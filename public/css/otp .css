@@ -1,16 +1,18 @@
-*{padding: 0%;
+*{
+    padding: 0%;
     margin: 0%;
     font-family: sans-serif;
+    color: white;
+
 }
 .card{
     width: 100%;
     height: 700px;
     display: flex;
- 
  align-items: center; 
- background:linear-gradient(135deg,rgb(192, 243, 255),rgb(0, 255, 102));
+ /* background:linear-gradient(135deg,rgb(192, 243, 255),rgb(0, 255, 102)); */
  
-  /* background: #dedada; */
+  background: #000000;
     justify-content: center;
 }
 .form{
@@ -20,22 +22,25 @@ align-items: center;
     display: flex;
     width: 500px;
     height: 300px;
-    background:linear-gradient(135deg,rgba(236, 236, 236, 0.392),rgba(241, 241, 241, 0.173));
+    background:linear-gradient(135deg,rgba(236, 236, 236, 0.067),rgba(241, 241, 241, 0.173));
 }
 label{
     margin-left: 10px;
     font-size: 1.2rem;
 }
-input{
+.inp{
+    background-color: #c4c2c231;
     margin-top: 20px;
-opacity: 40%;
+    opacity: 90%;
     width: 350px;
     height: 25px;
-    border-radius: 15px;
+    border-radius: 5px;
     border: none;
 }
-button{
-    background: transparent;
+.btn{
+ 
+    /* background: transparent; */
+    background-color: red;
     border: none;
     height: 30px;
     width: 70px;

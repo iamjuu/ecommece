@@ -1,11 +1,16 @@
-const express=require('express')
-const router=express.Router()
+const express = require("express");
+const router = express.Router();
 
-const{userHomeGet,userHomePost}=require('../controller/usercontroller')
-
-router.get('/userhome',userHomeGet)
-    .post('/userHome',userHomePost)
+const { userHomeGet, 
+        userHomePost } = require("../controller/usercontroller");
 
 
-    module.exports=router
-    
+router.get("/userhome", userHomeGet)
+      .post("/userHome", userHomePost);
+
+
+
+
+
+
+module.exports = router;

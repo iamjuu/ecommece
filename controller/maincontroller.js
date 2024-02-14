@@ -1,147 +1,156 @@
-const session=require('express-session')
-const {User}=require('../model/database')
-const nodemailer=require('nodemailer')
-const { text } = require('body-parser');
+const session = require("express-session");
+const { User } = require("../model/database");
+
+const { text } = require("body-parser");
+const nodemailer = require("nodemailer");
+require("dotenv").config()
+
+const otpGenerator = require('otp-generator')
+
+const optsender=require('../utils/sendemails')
+
+// const generateOTP=()=>{
+//   return Math.floor(1000 + Math.random() * 9000).toString();
+// }
+
+const otp =Math.floor(Math.random()*900000)+ 100000;
+optsender(email,otp)
+
+module.exports = {
+  signupGet: (req, res) => {
 
 
-
-
-module.exports={
-    signupGet:(req,res)=>{
-    if(req.session.email){
-        res.redirect('/userHome')
-    }else{
-        res.render('signup')
+    if (req.session.email) {
+      res.redirect("user/userHome");
+    } else {
+      res.render("user/signup")
+      
     }
+  },
 
-},
+  signupPost: async (req, res) => {
+    console.log(req.body);
+    const { Username, email, phone, password, confirmpassword } = req.body;
 
-
-signupPost:async(req,res)=>{
-    const {Username,
-       email,
-       phone,
-       password,
-       confirmpassword
-     }=req.body
-
-     const data={
-        name:Username,
-        email:email,
-        phone:phone,
-        password:password,
-     }
-
-    const newuser=await User.create(data)
-    console.log(newuser);
-
-        const defaultRole='User'
-        req.session.role=defaultRole
-
-        console.log('mail creating ');
-    const transporter = nodemailer.createTransport({
-        service:'gmail',
-        auth: {
-        user: "juuu5250@gmail.com",
-        pass: "jnzz zqdm hpjc krts",
-        },
-    });
-  
-
-
-    const otpgenerator=()=>{
-        let randomNumber=Math.floor(1000 + Math.random() * (9999 - 1000));
-        return randomNumber
-    }   
-            console.log('mail sending');
-    const otp=otpgenerator()
-
-    const mailOption={
-        from:"juuu5250@gmail.com",
-        to:email,
-        subject:"verification mail",
-        text:`your otp number is ${otp}`
-    }
+    const data = {
+      name: Username,
+      email: email,
+      phone: phone,
+      password: password,
+    };
     
-    const sendMail=async (transporter,mailOption)=>{
-        try{
-            await transporter.sendMail(mailOption);
-            console.log("email sent");
-            console.log(`this is otp${otp}`);
-            
-        }catch(err){
-            console.log(err)
-        }
-    }
-    sendMail(transporter,mailOption)
+    
+    const newuser = await User.create(data);
+
+await newuser.save()
+
+    
+    
+
+res.redirect("/admin/otp")
+  }
+  ,
+  otpGet:  (req, res) => {  
+    res.render("/admin/otp");
+
+
+  },
+  otppost: (req, res) => {
+    const{otp}=req.body
+   if(otpverification == otp){
+    res.redirect('/login')
+   }
+   else{
     res.redirect('/otp')
-},
-        otpGet:async(req,res)=>{
-            res.render('otp')
-            // const phone = req.session.phone
-            console.log('phone',phone);
+   }
+
+  },
 
 
- 
-
-        },
-        otppost:(req,res)=>{
-            const otp=req.body
-            // const phone=req.session.phone
-
-        },
-    
-    loginGet:(req,res)=>{
-        if(req.session.email){
-            return res.redirect('/userHome')
-            }
-            else{
-                res.render("login")
-            }
-    },
-
-    loginPost: async (req, res) => {
-        const email = req.body.email;
-        console.log(email);
-
-    
-        try {
-            const usr = await User.findOne({ email: email });
-            console.log(usr);
-
-    
-            if (usr) {
-          
-                if (usr.role) {
-                    req.session.role = usr.role;
-                    res.redirect('/adminHome');
-                } else {
-                    req.session.email = usr.email;
-                    res.redirect('/userHome');
-                }
-            } else {
-  
-                res.render('login', { error: 'User not found' });
-            }
-        } catch (error) {
-            
-
-
-            console.error(error);
-            res.status(500).send('Internal Server Error');
-        }
-    },
-    
-
-    logoutGet:(req,res)=>{
-        req.session.destroy((err)=>{
-            if(err){
-                console.log(err);
-            }
-            res.redirect('/login');
-         })   
-
+  loginGet: (req, res) => {
+    if (req.session.email) {
+      return res.redirect("/userHome");
+    } else {
+      res.render("../views/user/login");
     }
+
+  },
+
+  loginPost: async  (req, res) => {
+
+    console.log(req.body.email);
+    
+    const email = req.body.email;
+    console.log(email);
+
+    try {
+      const usr = await User.findOne({ email: email });
+      console.log(usr);
+
+      if (usr) {
+        if (usr.role) {
+          req.session.role = usr.role;
+          // res.redirect("/admin/adminHome");
+                res.render("admin/adminHome");
+
+        } else {
+          req.session.email = usr.email;
+          res.redirect("/userHome");
+        }
+      } else {
+
+        res.render("login");
+      }
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+
+  logoutGet: (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      }
+      res.redirect("/login");
+    });
+  },
+
+  forgotGet:(req,res)=>{
+    res.render('user/forgot')
+  },
+
+  forgotPost:(req,res)=>{
+
+console.log('sending otp');
+    
+   
+   
+    
+
+    
+res.redirect("/forgot")
+
+  },
+  EmailVerificationGet:(req,res)=>{
+    res.render('emailverfication')
+  },
+  EmailVerificationPost:(req,res)=>{
+
+  }
+
+
+
+
+
 
 }
+
+
+
+
+
+
+
 

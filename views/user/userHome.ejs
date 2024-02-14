@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userhome</title>
+    <link rel="stylesheet" href="css/userHome.css">
+
+</head>
+<body>
+    <%- include('header.ejs') %>
+    <div class="container">
+    <section id="features" class="section-p1">
+        <div class="f-box">
+          <img src="/features/f1.png" alt="free shipping" />
+          <h6>Free shipping</h6>
+        </div>
+        <div class="f-box">
+          <img src="/features/f2.png" alt="online order" />
+          <h6>online order</h6>
+        </div>
+        <div class="f-box">
+          <img src="/features/f3.png" alt="save money" />
+          <h6>save money</h6>
+        </div>
+        <div class="f-box">
+          <img src="/features/f4.png" alt="promotions" />
+          <h6>promotions</h6>
+        </div>
+        <div class="f-box">
+          <img src="/features/f5.png" alt="happy sell" />
+          <h6>happy sell</h6>
+        </div>
+        <div class="f-box">
+          <img src="/features/f6.png" alt="24/7 support" />
+          <h6>24/7 support</h6>
+        </div>
+      </section>
+
+      <div class="second">
+        <div class="head">
+            <h2>new collections</h2>
+            <p>Summer Collection New Morden Design
+
+            </p>
+        </div>
+      </div>
+
+    <!-- <h1>user home</h1> -->
+    <!-- ********************************  -->
+    <div class="main">
+      <div class="head_text">
+          <h1>products list</h1></div>
+
+      </div>
+      <div class="show">
+      <img  class="pic"  src="/show_image/l-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvteggrncre5.webp" alt="">
+      <img   class="pic"src="/show_image/s-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvtedcnagcsh.webp" alt="">
+      <img  class="pic" src="/show_image/s-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvtexfrrye8h.webp" alt="">
+      <img  class="pic" src="/show_image/xl-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvte86jsyd3g.webp" alt="">
+      <img  class="pic" src="/show_image/l-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfajzshhyqf.webp" alt="">
+     
+          <img  class="pic" src="/show_image/m-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfagfehmhs3.webp" alt="">
+          <img  class="pic" src="/show_image/m-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfawg93zfgz.webp" alt="">
+          <img  class="pic" src="/show_image/s-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfaqqvupyqv.webp" alt="">
+          <img  class="pic" src="/show_image/s-mens-color-full-striped-shirt-certizo-original-imagqkmgxmzdcs36.webp" alt="">
+
+          <img  class="pic" src="/show_image/m-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagunhgbma5rh82.webp" alt="">
+          <img class="pic"  src="/show_image/l-half-sleeve-printed-shirt-blue-dove-original-imagtyv8kh5qyhgf.webp" alt="" >
+          <img  class="pic"  src="/show_image/m-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagukxue2jkay4n.webp" alt="">
+
+
+      </div>
+
+    </div>
+
+
+      <div class="new_korean_collections ">
+
+        <h1  class="korean">NEW KOREAN COLLECTIONS</h1>
+      </div>
+      <div class="container2">
+      <div class="koreanshirt">
+        <% koreanproducts.forEach(koreanproduct=> { %>
+          <div class="koreancard">
+            <img   class="korean_image" src="/korean_image/<%=koreanproduct.imageurl %>" alt="<%= koreanproduct.name %>"  >
+            <!-- <h3 class="products__title"><%= koreanproduct.name %></h3> -->
+            <span class="products__price">$<%= koreanproduct.price %></span>
+            
+            <!-- <a href="/wishlist"><img  class="wish"  src="/logo/wishlist-svgrepo-com.svg" alt="" width="100px"></a>  -->
+          <img  class="wish" src="/logo/wishlist-svgrepo-com.svg" alt="" >
+
+            <form action="/addcart" method="get">
+              <button type="submit" class="cart_btn">Add to Cart</button>
+           </form>
+    </div>
+    <% }); %>
+          
+      </div>
+</div>
+
+
+
+<!-- planeshirts collections  -->
+
+
+</body>
+</html>

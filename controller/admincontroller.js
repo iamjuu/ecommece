@@ -1,46 +1,32 @@
-const{koreanproduct} =require('../model/database')
-const {planeproduct}=require('../model/database.js')
+const { koreanproduct } = require("../model/database");
+const { planeproduct } = require("../model/database.js");
 
-module.exports={
-    adminhomeGet:async(req,res)=>{
-        if(req.session.role===true){
-            const planeproducts=await planeproduct.find()
-            const koreanproducts=await koreanproduct.find()
-            res.render('adminHome',{koreanproducts,planeproducts})
-        }else{
-            res.redirect('/login')
-        }
+module.exports = {
+  dashboard: (req, res) => {
+    res.render("admin/adminHome");
+  },
+  user: (req, res) => {
+    res.render("admin/users");
+  },
+  product: (req, res) => {
+    res.render("admin/products");
+  },
+  category: (req, res) => {
+    res.render("admin/category");
+  },
+  coupen: (req, res) => {
+    res.render("admin/coupon");
+  },
+  orders: (req, res) => {
+    res.render("admin/orders");
+  },
+  banner:(req,res)=>{
+    res.render("admin/bannar")
+  },
+  addproductGet:(req,res)=>{
+    res.render('admin/addProduct')
+  },
+  addproductPost:(req,res)=>{
 
-
-    }, 
-     adminhomePost:(req,res)=>{
-
-    },
-
-
-
-    addproductGet:(req,res)=>{
-        if(req.session.role){
-            res.render('addProduct')
-        }else{
-          res.redirect('/login')
-        }
-    },
-    addproductPost:async(req,res)=>{
-            const {name,
-                price,
-                description}=req.body
-                const imageurl=req.file.filename
-
-
-                const newproduct= new koreanproduct({
-                    imageurl,
-                    name,
-                    price,
-                    description,
-                })
-                await newproduct.save()
-                res.redirect('/adminHome')
-
-    }
-}
+  }
+};

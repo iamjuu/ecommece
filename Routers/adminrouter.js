@@ -1,24 +1,16 @@
-
 const express=require('express')
 const router=express.Router()
-
-const koreansproduct=require('../middleware/multer')
-
-
-const {
-        adminhomeGet,
-        adminhomePost,
-        addproductGet,
-        addproductPost}=require('../controller/admincontroller')
+const admin=require("../controller/admincontroller")
 
 
-router.get('/adminHome',adminhomeGet)
-      .post('/adminHome',adminhomePost)
-      .get('/addproduct',addproductGet)
-     .post('/addProduct',koreansproduct.single('image'),addproductPost)
+router.get( "/dashboard", admin.dashboard)
+      .get( "/users",admin.user)
+      .get("/product",admin.product)
+      .get("/category",admin.category)
+      .get("/coupen",admin.coupen)
+      .get("/orders",admin.orders)
+      .get("/banner",admin.banner)
+      .get('/addproduct',admin.addproductGet)
+      .post('/addproduct',admin.addproductPost)
 
-
-
-     
-
-    module.exports=router
+module.exports=router

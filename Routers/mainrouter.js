@@ -1,32 +1,27 @@
-const express=require('express')
+const express = require("express");
+const router = express.Router();
 
 
-const router=express.Router()
-const{signupGet,
-        signupPost,
-        loginGet,
-        loginPost,
-        logoutGet,
-        otpGet,otppost,
-}=require('../controller/maincontroller')
+const {
+    signupGet,
+    signupPost,
+    loginGet,
+    loginPost,
+    forgotGet,
+    forgotPost,
+    otpGet,
+    otppost,
+    logoutGet,
+  } = require("../controller/maincontroller");
 
-const OTP=require('../middleware/otp')
+  router.get('/signup',signupGet)
+  .post('/signup',signupPost)
+  .get("user/login",loginGet)
+  .post("user/login",loginPost)
+  .get('user/forgot',forgotGet)
+  .post('user/forgot',forgotPost)
+  .get('user/otp',otpGet)
+  .post('user/otp',otppost) 
+  .get('/logout',logoutGet)
 
-// const {signupvalidation,loginvalidation}=require('../middleware/authetification')
-
-router.get('/',signupGet)
-        .post('/otp',signupPost)
-
-
-        .get("/otp",otpGet)
-        .post('/login',otppost)
-
-
-        .get('/login',loginGet)
-        .post('/userHome',loginPost)
-
-        .get('/logout',logoutGet)
-     
-
-
-        module.exports=router
+  module.exports=router

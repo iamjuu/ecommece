@@ -11,16 +11,14 @@ const cache=require('nocache')
 const session = require('express-session');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'view'));
+app.set('views', path.join(__dirname,'views'));
 
-
-
+console.log(path.join(__dirname,'views'))
 
 
 
 const mainrouter=require('./Routers/mainrouter')
 const adminrouter=require('./Routers/adminrouter')
-const userrouter=require('./Routers/userrouter')
 
 
 
@@ -46,11 +44,8 @@ app.use(bodyParser.json());
   app.use(express.json());
   
 app.use('/',adminrouter)
+
 app.use('/',mainrouter)
-app.use('/',userrouter)
-
-
-
 
 
 
