@@ -5,7 +5,7 @@ const { userHomeGet,
         userHomePost } = require("../controller/usercontroller");
 
 
-router.get("/userhome", userHomeGet)
+router.get("/user/userHome", userHomeGet)
       .post("/userHome", userHomePost);
 
 

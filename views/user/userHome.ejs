@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>userhome</title>
-    <link rel="stylesheet" href="css/userHome.css">
+    <link rel="stylesheet" href="/users/css/userHome.css">
 
 </head>
 <body>
-    <%- include('header.ejs') %>
+    <%- include('../common/header.ejs') %>
     <div class="container">
     <section id="features" class="section-p1">
         <div class="f-box">
@@ -75,31 +75,31 @@
     </div>
 
 
-      <div class="new_korean_collections ">
-
-        <h1  class="korean">NEW KOREAN COLLECTIONS</h1>
-      </div>
-      <div class="container2">
-      <div class="koreanshirt">
-        <% koreanproducts.forEach(koreanproduct=> { %>
-          <div class="koreancard">
-            <img   class="korean_image" src="/korean_image/<%=koreanproduct.imageurl %>" alt="<%= koreanproduct.name %>"  >
-            <!-- <h3 class="products__title"><%= koreanproduct.name %></h3> -->
-            <span class="products__price">$<%= koreanproduct.price %></span>
-            
-            <!-- <a href="/wishlist"><img  class="wish"  src="/logo/wishlist-svgrepo-com.svg" alt="" width="100px"></a>  -->
-          <img  class="wish" src="/logo/wishlist-svgrepo-com.svg" alt="" >
-
-            <form action="/addcart" method="get">
-              <button type="submit" class="cart_btn">Add to Cart</button>
-           </form>
-    </div>
-    <% }); %>
-          
       </div>
 </div>
 
 
+
+<div class="new_korean_collections ">
+
+  <h1  class="korean">NEW KOREAN COLLECTIONS</h1>
+</div>
+<div class="container2">
+<div class="koreanshirt">
+  <% koreanproducts.forEach(koreanproduct=> { %>
+    <div class="koreancard">
+      <img   class="korean_image" src="/korean_image/<%=koreanproduct.imageurl %>" alt="<%= koreanproduct.name %>"  >
+      <!-- <h3 class="products__title"><%= koreanproduct.name %></h3> -->
+      <span class="products__price">$<%= koreanproduct.price %></span>
+      
+      <!-- <a href="/wishlist"><img  class="wish"  src="/logo/wishlist-svgrepo-com.svg" alt="" width="100px"></a>  -->
+    <img  class="wish" src="/logo/wishlist-svgrepo-com.svg" alt="" >
+
+      <form action="/addcart" method="get">
+        <button type="submit" class="cart_btn">Add to Cart</button>
+     </form>
+</div>
+<% }); %>
 
 <!-- planeshirts collections  -->
 

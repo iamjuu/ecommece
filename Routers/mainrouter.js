@@ -16,12 +16,13 @@ const {
 
   router.get('/signup',signupGet)
   .post('/signup',signupPost)
-  .get("user/login",loginGet)
-  .post("user/login",loginPost)
+  .get('/user/otp',otpGet)
+  .post('/user/otp',otppost) 
+  .get("/user/login",loginGet)
+  .post("/user/login",loginPost)
   .get('user/forgot',forgotGet)
   .post('user/forgot',forgotPost)
-  .get('user/otp',otpGet)
-  .post('user/otp',otppost) 
+  
   .get('/logout',logoutGet)
 
   module.exports=router

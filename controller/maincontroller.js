@@ -8,13 +8,11 @@ require("dotenv").config()
 const otpGenerator = require('otp-generator')
 
 const optsender=require('../utils/sendemails')
-
 // const generateOTP=()=>{
 //   return Math.floor(1000 + Math.random() * 9000).toString();
 // }
 
-const otp =Math.floor(Math.random()*900000)+ 100000;
-optsender(email,otp)
+const otps =Math.floor(Math.random()*900000)+ 100000;
 
 module.exports = {
   signupGet: (req, res) => {
@@ -31,6 +29,7 @@ module.exports = {
   signupPost: async (req, res) => {
     console.log(req.body);
     const { Username, email, phone, password, confirmpassword } = req.body;
+    optsender(email,otp)
 
     const data = {
       name: Username,
@@ -47,21 +46,22 @@ await newuser.save()
     
     
 
-res.redirect("/admin/otp")
+res.redirect("/user/otp")
   }
   ,
   otpGet:  (req, res) => {  
-    res.render("/admin/otp");
+    res.render("/user/otp");
 
 
   },
   otppost: (req, res) => {
+
     const{otp}=req.body
-   if(otpverification == otp){
-    res.redirect('/login')
+   if( otps== otp){
+    res.redirect('/user/login')
    }
    else{
-    res.redirect('/otp')
+    res.redirect('/user/otp')
    }
 
   },
@@ -71,7 +71,7 @@ res.redirect("/admin/otp")
     if (req.session.email) {
       return res.redirect("/userHome");
     } else {
-      res.render("../views/user/login");
+      res.render("user/login");
     }
 
   },
@@ -95,7 +95,7 @@ res.redirect("/admin/otp")
 
         } else {
           req.session.email = usr.email;
-          res.redirect("/userHome");
+          res.redirect("/user/userHome");
         }
       } else {
 

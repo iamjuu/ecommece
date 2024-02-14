@@ -19,7 +19,7 @@ console.log(path.join(__dirname,'views'))
 
 const mainrouter=require('./Routers/mainrouter')
 const adminrouter=require('./Routers/adminrouter')
-
+const userrouter=require('./Routers/userrouter')
 
 
 
@@ -44,8 +44,8 @@ app.use(bodyParser.json());
   app.use(express.json());
   
 app.use('/',adminrouter)
-
 app.use('/',mainrouter)
+app.use('/',userrouter)
 
 
 

@@ -3,10 +3,10 @@ const { koreanproduct } = require('../model/database')
 
 
 module.exports={
-    userHomeGet:async(req,res)=>{
+    userHomeGet:(req,res)=>{
 
-        const koreanproducts=await koreanproduct.find()
-    res.render('userhome',{koreanproducts})
+        // const koreanproducts=await koreanproduct.find()
+    res.render('user/userHome')
     },
     
     userHomePost:(req,res)=>{
