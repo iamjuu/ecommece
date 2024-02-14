@@ -1,0 +1,86 @@
+* {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #f4f4f4; */
+    /* background: black; */
+}
+footer{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    height: 250px;
+    background: rgb(0, 0, 0);
+}
+.footer-1{
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    width: 25%;
+}
+
+.footer-2{
+
+    width: 25%;
+    display: flex;
+flex-direction: column;
+/* justify-content: center; */
+align-items: center;
+    gap: 10px;
+    /* background: yellow; */
+
+}
+
+.footer-3{
+    background: rgb(38, 38, 67);
+
+display: flex;
+    background: black ;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+
+}
+ul li a{
+    text-decoration: none;
+    color: white;
+}
+.footer-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+width: 100%;
+height: 100%;
+}
+.footer-icon{
+    gap: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    /* background: rgb(0, 255, 64); */
+    height: 100%;
+}
+.footer-4{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background: red; */
+    width: 25%;
+
+    height: 100%;
+}
+.footer-inp{
+    height: 40px;
+    width: 250px;
+}
+.footer-text{
+    color: white;
+}
+.footer-btn{
+    background: linear-gradient(625deg,white,black);
+    position: relative;
+    top: 30px;
+}

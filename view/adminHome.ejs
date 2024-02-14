@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adminhome</title>
+    <link rel="stylesheet" href="css/adminHome.css">
+</head>
+<body>
+    <div class="container">
+    <%- include('header.ejs') %>
+    <div class="head">
+
+    </div>
+<div class="all">
+    <h1 >products  list</h1>
+    <form action="/addProduct" method="get">
+        <button type="submit" class="bt3">Add Product</button>
+     </form>
+    <div class="items">
+      
+      
+        
+        <% koreanproducts.forEach(koreanproduct => { %>    
+            <div class="itm">
+
+                <img  id="pic1" src="/korean_image/<%= koreanproduct.imageurl %>" alt="<%= koreanproduct.name %>" class="">
+
+           
+      
+                <div class="text">
+                    <label for="name_<%= koreanproduct._id %>">Name:</label>
+                    <input   type="text" id="name_<%= koreanproduct._id %>" name="name" class="product-name" value="<%= koreanproduct.name %>"><br><br>
+                            <label for="price_<%= koreanproduct._id %>">Price:</label>
+                            <input type="number" id="price_<%= koreanproduct._id %>" name="price"  class="product-price" value="<%= koreanproduct.price %>">
+            </div>
+        </div>
+            <% }); %>
+    </div>
+   
+    </div>
+
+
+   
+    </div>
+
+
+</body>
+</html>

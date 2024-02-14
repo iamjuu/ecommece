@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add product</title>
+    <link rel="stylesheet" href="css/addproduct.css">
+</head>
+<body>
+    
+  <h1>ADD PRODUCT</h1>
+
+  <div class="all">
+    <div class="frm">
+      <form action="/addProduct" method="post" enctype="multipart/form-data"> 
+
+      <label for="image">Image</label>
+      <input type="file" accept="image/*" placeholder="Product image" id="image" name="image" required>
+
+      <label for="name" id="name">Name</label>
+      <input type="text" placeholder="Product name" id="name" name="name" required>
+
+      <label for="price">Price</label>
+      <input type="number" placeholder="Product price" id="price" name="price" required>
+
+      <label for="description">Description</label>
+      <textarea placeholder="Product description" id="description" name="description"  rows="4" cols="51" required></textarea>
+
+      <button type="submit">Add</button>
+      
+    </form>
+  </div>
+  </div>
+</body>
+</html>

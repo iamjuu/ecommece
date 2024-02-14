@@ -1,0 +1,1281 @@
+{
+	"info": {
+		"_postman_id": "0da99139-19b5-4086-a560-d790a66650a6",
+		"name": "Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31859942"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/signup",
+						"description": "This endpoint is used to sign up a user.\n\nThe request does not require any payload, and the response returns a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "post signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user\",\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"User@8086\",\r\n    \"confirmPassword\":\"User@8086\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/signup",
+						"description": "\n### Sign Up\nThis endpoint is used to create a new user account.\n\n- Method: POST\n- URL: `http://localhost:8080/signup`\n\n#### Request Body\n- raw (application/json)\n    - `username`: (string) The username of the new user.\n    - `email`: (string) The email address of the new user.\n    - `password`: (string) The password for the new user.\n    - `confirmPassword`: (string) The confirmation of the password.\n\n#### Response\n- Status: 200\n- Body: null\n"
+					},
+					"response": [
+						{
+							"name": "post signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"user\",\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"User@8086\",\r\n    \"confirmPassword\":\"User@8086\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/signup"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\":\"success\",\r\n    \"message\":\"registration success full\r\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/login",
+						"description": "This endpoint is used to initiate a user login. Upon successful execution, it returns a status code of 200.\n\nThe request body for this endpoint does not require any parameters."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"User@8086\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/login",
+						"description": "This API endpoint allows users to log in by sending a POST request to the specified URL. The request should include the user's email and password in the request body. Upon successful execution, the server returns a status code of 200."
+					},
+					"response": [
+						{
+							"name": "post login",
+							"originalRequest": {
+								"method": "POST",
+								"header": []
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "\r\n{\r\n    \"status\":\"success\"\r\n    \"message\":\"login sucessfull\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "This endpoint is used to log out the user/admin. Upon successful execution, it returns a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "requesting-otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mobileNumber\":\"9988776655\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/request-otp",
+						"description": "\nThis endpoint makes an HTTP POST request to http://localhost:8080/user/reques-otp to request an OTP (One Time Password) for user verification. The request body should contain a JSON object with a \"mobileNumber\" field.\n\nUpon successful execution, the response will have a status code of 200 and a JSON object with the \"status\" field set to \"success\". It will also include a \"message\" indicating the success of the OTP request, and a \"data\" object containing the \"otpRequestId\" and \"expiresInMinutes\" fields.\n\n### Example Response\n```json\n{\n  \"status\": \"success\",\n  \"message\": \"OTP successfully sent to the user's registered email/phone number.\",\n  \"data\": {\n    \"otpRequestId\": \"123456789\",\n    \"expiresInMinutes\": 5\n  }\n}\n```\n"
+					},
+					"response": [
+						{
+							"name": "requesting-otp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobileNumber\":\"9988776655\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/request-otp"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n  \"status\": \"success\",\r\n  \"message\": \"OTP successfully sent to the user's registered phone number.\",\r\n  \"data\": {\r\n    \"otpRequestId\": \"123456789\",\r\n    \"expiresInMinutes\": 5\r\n  }\r\n}\r\n"
+						}
+					]
+				},
+				{
+					"name": "verifying-otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/verify-otp",
+						"description": "## Verify OTP\n\nThis endpoint is used to verify the OTP (One Time Password) provided by the user.\n\n### Request Body\n\n- `otp` (string, required): The OTP provided by the user for verification.\n    \n\n### Response\n\n- Status: 200"
+					},
+					"response": []
+				},
+				{
+					"name": "otp-request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "This end point renders the otp request page"
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/profile",
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve the user's profile information. The response will include the user's username, email, mobile number, address details such as house number, street, district, zip code, and state.\n\nExample Response:\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"userName\": \"John\",\n        \"email\": \"John@gmail.com\",\n        \"mobile_no\": \"9988776655\",\n        \"house_no\": \"122\",\n        \"street\": \"abcd\",\n        \"district\": \"abcd\",\n        \"zip\": \"223344\",\n        \"state\": \"xyz\"\n    }\n}\n```\n"
+					},
+					"response": [
+						{
+							"name": "user/profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/user/profile"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\":\"success\",\r\n    \"data\":{\r\n        \"userName\":\"John\",\r\n        \"email\":\"John@gmail.com\",\r\n        \"mobile_no\":\"9988776655\",\r\n        \"house_no\":\"122\",\r\n        \"street\":\"abcd\",\r\n        \"district\":\"abcd\",\r\n        \"zip\":\"223344\",\r\n        \"state\":\"xyz\"\r\n\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "profile-update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n        \"userName\":\"John\",\r\n        \"email\":\"John@gmail.com\",\r\n        \"mobile_no\":\"9988776655\",\r\n        \"house_no\":\"122\",\r\n        \"street\":\"abcd\",\r\n        \"district\":\"abcd\",\r\n        \"zip\":\"223344\",\r\n        \"state\":\"xyz\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/profile/update",
+						"description": "\n### Update User Profile\n\nThis endpoint allows you to update the user profile with the provided details.\n\n#### Request Body\n- `userName` (text, optional): The user's name.\n- `email` (text, optional): The user's email address.\n- `mobile_no` (text, optional): The user's mobile number.\n- `house_no` (text, optional): The user's house number.\n- `street` (text, optional): The user's street address.\n- `district` (text, optional): The user's district.\n- `zip` (text, optional): The user's ZIP code.\n- `state` (text, optional): The user's state.\n\n#### Response\n- `status`: Indicates the status of the request, whether it was successful or not.\n- `data`: An object containing the updated user profile details if the request was successful.\n\n#### Example\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"userName\": \"John\",\n        \"email\": \"John@gmail.com\",\n        \"mobile_no\": \"9988776655\",\n        \"house_no\": \"122\",\n        \"street\": \"abcd\",\n        \"district\": \"abcd\",\n        \"zip\": \"223344\",\n        \"state\": \"xyz\"\n    }\n}\n```\n"
+					},
+					"response": [
+						{
+							"name": "profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": "http://localhost:8080/user/profile/update"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\":\"success\",\r\n    \"data\":{\r\n        \"userName\":\"John\",\r\n        \"email\":\"John@gmail.com\",\r\n        \"mobile_no\":\"9988776655\",\r\n        \"house_no\":\"122\",\r\n        \"street\":\"abcd\",\r\n        \"district\":\"abcd\",\r\n        \"zip\":\"223344\",\r\n        \"state\":\"xyz\"\r\n\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "This endpoint is used to initiate the process of resetting a user's forgotten password. Upon successful execution, it returns a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"John@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/password/forgot",
+						"description": "\n### User Password Forgot\n\nThis endpoint is used to initiate the process of resetting a user's password by sending a reset link to the provided email address.\n\n**Request Body**\n- email (string, required): The email address of the user for whom the password reset link will be sent.\n\n**Response**\n- Status: 200\n- Body: null\n\n"
+					},
+					"response": [
+						{
+							"name": "forgot-password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"John@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user/password/forgot"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n  \"status\": \"success\",\r\n  \"message\": \"OTP successfully sent to the user's registered email.\",\r\n  \"data\": {\r\n    \"otpRequestId\": \"123456789\",\r\n    \"expiresInMinutes\": 5\r\n  }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "update-password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "This endpoint is used to update the password for a user.\n\nThe request does not require any payload in the request body.\n\nThe response returns a status code of 200 upon successful execution."
+					},
+					"response": []
+				},
+				{
+					"name": "update-password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\":\"Abcd@123\",\r\n    \"confirmPassword\":\"Abcd@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/password/update",
+						"description": "### Update User Password\n\nThis endpoint is used to update the password for a user.\n\n#### Request Body\n\n- `newPassword` (string, required): The new password for the user.\n- `confirmPassword` (string, required): Confirmation of the new password.\n    \n\n#### Response\n\n- Status: 200\n- Body: null"
+					},
+					"response": []
+				},
+				{
+					"name": "homepage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/home",
+						"description": "\nThis endpoint sends an HTTP GET request to retrieve the home data from the server.\n\nThe response will have a status code of 200.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/cart",
+						"description": "\n    \n# GET /user/cart\n\nThis endpoint is used to retrieve the cart details for the user.\n\n## Response\n\n- Status: 200\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "add to cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart/add/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								"add",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This endpoint is used to add a specific item to the cart. The `:id` parameter in the URL should be replaced with the unique identifier of the item to be added.\n\n### Request Body\n\n- `quantity` (string, required): The quantity of the item to be added to the cart.\n    \n\n### Response\n\n- Status: 200\n- Body: null\n    \n\nThis request adds the specified quantity of the item to the cart and returns a status code of 200 upon successful addition."
+					},
+					"response": []
+				},
+				{
+					"name": "wishlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/wishlist",
+						"description": "\n## Get Wishlist\n\nThis endpoint makes an HTTP GET request to retrieve the wishlist.\n\n### Response\n- Status: 200\n"
+					},
+					"response": []
+				},
+				{
+					"name": "add to wishlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/wishlist/add/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"wishlist",
+								"add",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\n    \n# Wishlist Add\n\nThis endpoint makes an HTTP POST request to add an item to the wishlist with the specified ID.\n\n### Request Body\n- The request should be made with a raw request body.\n\n### Response\n- Upon a successful request, the server returns a status code of 200.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "view single product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "\nThis HTTP GET request retrieves the details of a product with the specified ID. The request should be made to http://localhost:8080/product/:id, where \":id\" should be replaced with the actual ID of the product.\n\nThe response to this request will have a status code of 200, indicating a successful retrieval of the product details. The response body will contain the details of the product in the JSON format.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "remove from cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cart/product/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint is used to delete a specific product from the cart. The \":id\" parameter in the URL should be replaced with the unique identifier of the product to be removed.\n\nUpon successful execution of the request, a status code of 200 is returned, indicating that the product has been successfully deleted from the cart.\n\nNo request body is required for this DELETE request.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "remove from wishlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/wishlist/product/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"wishlist",
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint sends an HTTP DELETE request to remove a product from the wishlist based on the provided ID.\n\nThe request does not contain a request body.\n\nUpon successful execution, the endpoint returns a status code of 200 with no response body.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "singleorderdetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/myorder/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"myorder",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis HTTP GET request is used to retrieve a specific order by providing its unique identifier in the URL parameter. The request does not contain a request body.\n\n### Response\n- Status: 200\n\nThe response returns the details of the specific order identified by the provided ID.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "complete orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/myorders",
+						"description": "This HTTP GET request is used to retrieve complete order details The request does not contain a request body.\n\n### Response\n\n- Status: 200\n    \n\nThe response returns the details of the complete orders"
+					},
+					"response": []
+				},
+				{
+					"name": "placeorder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/checkout",
+						"description": "This HTTP GET request is used to retrieve order placing page The request does not contain a request body.\n\n### Response\n\n- Status: 200\n    \n\nThe response returns the details of the order placing page"
+					},
+					"response": []
+				},
+				{
+					"name": "delivery address change",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/order/changeaddress",
+						"description": "This HTTP GET request is used to retrieve page for delevery address change The request does not contain a request body.\n\n### Response\n\n- Status: 200"
+					},
+					"response": []
+				},
+				{
+					"name": "delivery address change",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"houseNo\":\"234\",\r\n    \"street\":\"abcd\",\r\n    \"district\":\"xyz\",\r\n    \"zip\":\"345566\",\r\n    \"state\":\"abcdefg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/order/changeaddress",
+						"description": "This endpoint allows you to update the address details for an order.\n\n### Request Body\n\n- `houseNo` (string): The house number for the new address.\n- `street` (string): The street name for the new address.\n- `district` (string): The district for the new address.\n- `zip` (string): The ZIP or postal code for the new address.\n- `state` (string): The state for the new address.\n    \n\n### Response\n\n- Status: 200\n- Body: null\n    \n\nUse this endpoint to change the address associated with an order."
+					},
+					"response": []
+				},
+				{
+					"name": "ordersummary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/checkout/summary",
+						"description": "\nThis endpoint sends an HTTP GET request to retrieve the summary of the checkout process.\n\nThe request does not contain a request body.\n\nUpon a successful execution, the endpoint returns a response with a status code of 200.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "payment process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/order/payment/process",
+						"description": "This API endpoint is a POST request to [http://localhost:8080/order/payment](http://localhost:8080/order/payment). It is used to process payment for an order.\n\nThe request body for this endpoint is of an undefined type and was not provided in the last call.\n\nThe response to the last execution returned a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8080/order/payment/process",
+						"description": "This API endpoint is a POST request to [http://localhost:8080/order/payment](http://localhost:8080/order/payment). It is used to process payment for an order.\n\nThe request body for this endpoint is of an undefined type and was not provided in the last call.\n\nThe response to the last execution returned a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "orderconfirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8080/order/payment/confirm",
+						"description": "\nThis endpoint is used to confirm an order with a specific order ID. The HTTP POST request should be made to http://localhost:8080/order/:orderid/confirm with a payload in raw request body type containing a key \"confirmation\" with a boolean value.\n\n### Request Body\n- confirmation (boolean): Indicates whether the order should be confirmed or not.\n\n### Response\n- Status: 200\n- Body: null\n\nThis endpoint confirms the order with the provided order ID and returns a status code of 200 upon successful confirmation.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "contact us",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/contact",
+						"description": "This endpoint makes an HTTP GET request to retrieve contact form.\n\nThe request does not include a request body.\n\nThe response returns a status code of 200 with no specific data."
+					},
+					"response": []
+				},
+				{
+					"name": "contact us",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"abcd@gmail.com\",\r\n    \"subject\":\"example\",\r\n    \"message\":\"example message\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/contact",
+						"description": "\nThis endpoint allows you to submit a contact form with the specified email, subject, and message. \n\n### Request Body\n- `email` (string, required): The email address of the sender.\n- `subject` (string, required): The subject of the message.\n- `message` (string, required): The content of the message.\n\n### Response\n- Status: 200\n- Body: null\n\nThis indicates a successful submission of the contact form.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "message",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/messages/",
+						"description": "\nThis endpoint is used to retrieve messages. \n\nNo request body is required for this request.\n\n### Response\n- Status: 200\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "AdminHome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/home",
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve the admin home data. The request does not include a request body. Upon successful execution, the endpoint returns a status code of 200.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "All user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/allusers",
+						"description": "\n    \n# Get All Users\n\nThis endpoint makes an HTTP GET request to retrieve all users from the admin panel.\n\n## Response\n\nUpon a successful request, the server will respond with a status code of 200.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/user/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "### Delete User by ID\n\nThis endpoint is used to delete a specific user by their ID.\n\n#### Request\n\n- Method: DELETE\n- URL: `http://localhost:8080/admin/user/:id`\n    \n\n#### Response\n\n- Status: 200"
+					},
+					"response": []
+				},
+				{
+					"name": "user details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/userdetails/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"userdetails",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint retrieves the details of a specific user identified by the provided ID. \n\nNo request body is required for this GET request.\n\nThe response will have a status code of 200, indicating a successful retrieval of the user details. The response body will contain the details of the user identified by the provided ID.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "allproduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/products",
+						"description": "\nThis HTTP GET request retrieves a list of products for the admin. The request does not contain a request body. \n\nThe response returns a status code of 200 with no specific data in the body.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "edit product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\":\"ikegai\",\r\n    \"product_description\":\"The book introduces the concept of ikigai and how it helps the Japanese people live a healthy life even at an old age. Then the authors describe the secrets of ...\",\r\n    \"category\":\"book\",\r\n    \"stocks\":\"10000\",\r\n    \"price\":\"200\",\r\n    \"image\":\"image.jpg\",\r\n    \"discount\":\"10\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\n### Update Product Details\n\nThis endpoint is used to update the details of a specific product.\n\n#### Request\n\n- Method: PATCH\n- URL: `http://localhost:8080/admin/products/:id`\n\n##### Request Body\n- raw (application/json)\n    - `product_name`: (string) The name of the product\n    - `product_description`: (string) The description of the product\n    - `category`: (string) The category of the product\n    - `stocks`: (string) The stock quantity of the product\n    - `price`: (string) The price of the product\n    - `image`: (string) The image URL of the product\n    - `discount`: (string) The discount percentage of the product\n\n#### Response\n\n- Status: 200\n- Body: null\n"
+					},
+					"response": []
+				},
+				{
+					"name": "delete products",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint is used to delete a specific product by its ID. No request body is required for this request.\n\nUpon successful execution, the server returns a status code of 200 with no response body.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "add products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/addproduct",
+						"description": "This API endpoint is used to retrever a page to add a new product to the admin system. It is an HTTP GET request that does not require a request body.\n\n### Response\n\n- Status: 200\n- The response will be null."
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accestoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\":\"ikegai\",\r\n    \"product_description\":\"The book introduces the concept of ikigai and how it helps the Japanese people live a healthy life even at an old age. Then the authors describe the secrets of ...\",\r\n    \"category\":\"book\",\r\n    \"stocks\":\"10000\",\r\n    \"price\":\"200\",\r\n    \"image\":\"image.jpg\",\r\n    \"discount\":\"10\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/addproduct",
+						"description": "\n### Add Product\nThis endpoint allows administrators to add a new product to the system.\n\n#### Request Body\n- product_name (text, required): The name of the product.\n- product_description (text, required): A brief description of the product.\n- category (text, required): The category to which the product belongs.\n- stocks (text, required): The available stock quantity for the product.\n- price (text, required): The price of the product.\n- image (file, required): The image file of the product.\n- discount (text, required): The discount percentage for the product.\n\n#### Response\n- Status: 200\n- Body: null\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/categories",
+						"description": "\nThis HTTP GET request is used to retrieve the categories for the admin. The request does not contain a request body. Upon a successful execution, the server responds with a status code of 200. The response does not include any specific data.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "add categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/categories/add",
+						"description": "This endpoint is used to add categories in the admin panel. The request should be sent via an HTTP GET method to [http://localhost:8080/admin/categories/add](http://localhost:8080/admin/categories/add).\n\nit retreive the page to add category\n\nThe response to the request returns a status code of 200."
+					},
+					"response": []
+				},
+				{
+					"name": "add categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\":\"books\",\r\n    \"image\":\"image.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/categories/add",
+						"description": "\nThis endpoint allows you to add a new category to the admin system. The request should be sent as an HTTP POST to the specified URL.\n\n### Request Body\n- `category` (string, required): The name of the category to be added.\n- `image` (string, required): The image associated with the category.\n\n### Response\n- Status: 200\n- The response body is null.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "edit category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_name\":\"abc category\",\r\n    \"image\":\"new-image.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/categories/edit/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"categories",
+								"edit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This endpoint is used to update a specific category by its ID. The request should be sent as an HTTP PATCH to the specified URL with the category ID in the URL parameter. The request body should contain the updated category name and image.\n\nThe request body should be in raw format and include the following parameters:\n\n- category_name (string): The updated name of the category.\n- image (string): The updated image for the category.\n    \n\nThe response to the request will have a status code of 200, indicating a successful update. The response body will be null."
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/categories/edit/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"categories",
+								"edit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint is used to delete a specific category by its ID.\n\n### Request\n\n`DELETE /admin/categories/edit/:id`\n\n### Response\n\n- Status: 200\n- Body: null\n"
+					},
+					"response": []
+				},
+				{
+					"name": "messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/messages",
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve messages for the admin. The request does not include a request body. Upon successful execution, the API returns a status code of 200 with no specific response data.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "single message",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/messages/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"messages",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve a specific message for the admin based on the provided message ID. The request does not contain a request body. \n\n### Response\nThe response returns a status code of 200 with no specific data in the response body.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "single message delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/messages/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"messages",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis HTTP DELETE request is used to delete a specific message identified by its ID in the admin messages. The request does not require a request body. Upon successful execution, the response returns a status code of 200.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "view coupons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/coupons",
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of coupons for admins. The request does not require any payload in the request body. The response will have a status code of 200, indicating a successful request, and will return the list of coupons in the response body."
+					},
+					"response": []
+				},
+				{
+					"name": "add coupons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/coupons",
+						"description": "This endpoint makes an HTTP GET request to retrieve page to add coupons for admins. The request does not require any payload in the request body. The response will have a status code of 200, indicating a successful request, and will return the list of coupons in the response body."
+					},
+					"response": []
+				},
+				{
+					"name": "add coupons",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponsName\":\"example coupons\",\r\n    \"image\":\"coupons.jpg\",\r\n    \"discount\":\"10\",\r\n    \"max-discoount\":\"20\",\r\n    \"min-discount\":\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/coupons",
+						"description": "\nThis endpoint allows the admin to create new coupons. The request should be sent as an HTTP POST to http://localhost:8080/admin/coupons. The request body should be in raw format and include the following parameters:\n- couponsName (string): The name of the coupon.\n- image (string): The image associated with the coupon.\n- discount (string): The discount offered by the coupon.\n- max-discount (string): The maximum discount applicable with the coupon.\n- min-discount (string): The minimum discount applicable with the coupon.\n\nThe response to the request will have a status code of 200, indicating a successful execution. The response body will be null.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "update coupons",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponsName\":\"example coupons\",\r\n    \"image\":\"coupons.jpg\",\r\n    \"discount\":\"10\",\r\n    \"max-discoount\":\"20\",\r\n    \"min-discount\":\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/coupons/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"coupons",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This endpoint is used to update a specific coupon by its ID. The request should be sent as an HTTP PATCH to the specified URL. The request body should contain the fields to be updated, such as couponsName, image, discount, max-discount, and min-discount.\n\nUpon a successful execution, the server will respond with a status code of 200. The response body will be null."
+					},
+					"response": []
+				},
+				{
+					"name": "delete coupons",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/coupons/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"coupons",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "\nThis endpoint sends an HTTP DELETE request to remove a specific coupon identified by its ID.\n\n### Request\n\nThe request should include the ID of the coupon to be deleted in the URL path.\n\n### Response\n\nUpon successful deletion, the endpoint returns a status code of 200.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "view banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/banners",
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of banners for admins. The request does not require any payload in the request body. The response will have a status code of 200, indicating a successful request, and will return the list of coupons in the response body."
+					},
+					"response": []
+				},
+				{
+					"name": "add banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/admin/banners/add",
+						"description": "This endpoint makes an HTTP GET request to retrieve page to add banners for admins. The request does not require any payload in the request body. The response will have a status code of 200, indicating a successful request, and will return the list of coupons in the response body."
+					},
+					"response": []
+				},
+				{
+					"name": "add banners",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponsName\":\"example coupons\",\r\n    \"image\":\"coupons.jpg\",\r\n    \"discount\":\"10\",\r\n    \"max-discoount\":\"20\",\r\n    \"min-discount\":\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/coupons",
+						"description": "This endpoint allows the admin to create new banner. The request should be sent as an HTTP POST to [http://localhost:8080/admin/coupons](http://localhost:8080/admin/coupons). The request body should be in raw format and include the following parameters:\n\n- bannerName (string): The name of the coupon.\n    \n- image (string): The image associated with the coupon.\n    \n\nThe response to the request will have a status code of 200, indicating a successful execution. The response body will be null."
+					},
+					"response": []
+				},
+				{
+					"name": "update banners",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bannerName\":\"example coupons\",\r\n    \"image\":\"coupons.jpga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/banners/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"banners",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This endpoint is used to update a specific banner by its ID. The request should be sent as an HTTP PATCH to the specified URL. The request body should contain the fields to be updated, such as bannerName, image.\n\nUpon a successful execution, the server will respond with a status code of 200. The response body will be null."
+					},
+					"response": []
+				},
+				{
+					"name": "delete banners",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/banners/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"banners",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This endpoint sends an HTTP DELETE request to remove a specific banner identified by its ID.\n\n### Request\n\nThe request should include the ID of the banner to be deleted in the URL path.\n\n### Response\n\nUpon successful deletion, the endpoint returns a status code of 200."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://6b030506-3f8e-4af9-bb43-04d09864f543.mock.pstmn.io",
+			"type": "string"
+		}
+	]
+}
