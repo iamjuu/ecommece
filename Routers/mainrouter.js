@@ -5,12 +5,12 @@ const router = express.Router();
 const {
     signupGet,
     signupPost,
+    otpGet,
+    otppost,
     loginGet,
     loginPost,
     forgotGet,
     forgotPost,
-    otpGet,
-    otppost,
     logoutGet,
   } = require("../controller/maincontroller");
 
@@ -20,8 +20,8 @@ const {
   .post('/user/otp',otppost) 
   .get("/user/login",loginGet)
   .post("/user/login",loginPost)
-  .get('user/forgot',forgotGet)
-  .post('user/forgot',forgotPost)
+  .get('/user/forgot',forgotGet)
+  .post('/user/forgot',forgotPost)
   
   .get('/logout',logoutGet)
 

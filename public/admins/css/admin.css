@@ -119,7 +119,10 @@
 .content_part{
     width: calc(100vw - 15rem);
     height: 100%;
-    background-image: linear-gradient(to top left, black, grey);
+    color: white
+    ;
+    background: #000000cd;
+    /* background-image: linear-gradient(to top left, black, grey); */
     border-left: 1px solid #4D4C7D;
     overflow-y: scroll;
 }
@@ -534,8 +537,9 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.86);
-    box-shadow: 0px 0px 1.5rem 0.1rem rgba(128, 128, 128, 0.525);
+    border-radius: 5px;
+    background-color: rgba(164, 159, 159, 0.86);
+    /* box-shadow: 0px 0px 1.5rem 0.1rem rgba(128, 128, 128, 0.525); */
     border: 1px solid rgba(128, 128, 128, 0.351);
 }
 .category_gap_div:hover{
@@ -568,11 +572,11 @@ button:hover {
     height: 3rem;
     border-radius: 4px;
     margin-top: .5rem;
-    background-color: #edb409;
+    background-color: #09a1ed;
     color: #363062;
 }
 .category_image_buttn:hover{
-    background-color: #363062;
+    background-color: #2b2c2d;
     color: aliceblue;
     border: none;
 }
@@ -586,14 +590,14 @@ button:hover {
 .category_div button {
     padding: 0.5rem 1rem;
     width: 10rem;
-    background-color: #edb409;
+    background-color: #098aed;
     color: #363062;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 .category_div button:hover{
-    background-color: #363062;
+    background-color: #2b2c2d;
     color: aliceblue;
     border: none;
 }

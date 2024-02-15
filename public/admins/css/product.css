@@ -36,14 +36,19 @@ background: #000000cb;
     border-radius: 30px;
 }
 .logout{
+    /* left: 280px; */
+    /* top: 50px; */
+    position: relative;
     height: 50px;
     width: 200px;
     display: flex;align-items: center;
     justify-content: center;
 }
-.btn1{
+.btn1{left: 200px;
+    top: 60px;
+    position: relative;
     color: white;
-    height: 30px;
+    height: 40px;
     width: 100px;
     border: 2px solid rgb(0, 255, 149);
     border-radius: 10px;

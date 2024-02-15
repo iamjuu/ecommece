@@ -28,32 +28,38 @@
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>DASHBOARD</li>
-                    <li onclick="window.location.href='/users'"><lord-icon
+                    <li onclick="window.location.href='/admin/users'"><lord-icon
     src="https://cdn.lordicon.com/xfzuyvam.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>USERS</li>
-                    <li onclick="window.location.href='/product'"><lord-icon
+                    <li onclick="window.location.href='/admin/product'"><lord-icon
     src="https://cdn.lordicon.com/amlwgnug.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>PRODUCTS</li>
-                    <li onclick="window.location.href='/category'"><lord-icon
+
+                    <li onclick="window.location.href='/admin/category'"><lord-icon
     src="https://cdn.lordicon.com/kpvuihyi.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>CATEGORY</li>
-                    <li onclick="window.location.href='/coupen'"><lord-icon
+
+
+                    <li onclick="window.location.href='/admin/coupen'"><lord-icon
     src="https://cdn.lordicon.com/nlmjynuq.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>COUPONS</li>
-                    <li onclick="window.location.href='/orders'"><lord-icon
+
+
+
+                    <li onclick="window.location.href='/admin/orders'"><lord-icon
     src="https://cdn.lordicon.com/guothkao.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>ORDERS</li>
-                    <li onclick="window.location.href='/banner'"><lord-icon
+                    <li onclick="window.location.href='/admin/banner'"><lord-icon
     src="https://cdn.lordicon.com/fxtblcmc.json"
     trigger="hover"
     style="width:50px;height:50px">
@@ -76,7 +82,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Reg.Date</th>
+                                <!-- <th>Reg.Date</th> -->
                                 <th>ORDERS</th>
                                 <th>
                                     Action</th>
@@ -84,26 +90,19 @@
                            </thead>
          
                            <tbody>
+                            <% users.forEach(user => {%>
+                                
+                  
                             <tr>
                                 <td>1</td>
-                                <td>12234067456475647564700785</td>
-                                <td>User</td>
-                                <td>user@gmail.com</td>
-                                <td>9090909090</td>
-                                <td>24/01/2024</td>
+                                <td>  <%= user._id  %> </td>
+                                <td><%= user.username  %></td>
+                                <td><%= user.email  %></td>
+                                <td><%= user.phone  %></td>
                                 <td>0</td>
                                 <td> <i class="bi bi-trash-fill"></i> </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>1223458rt4647094748</td>
-                                <td>User</td>
-                                <td>user@gmail.com</td>
-                                <td>9090909090</td>
-                                <td>24/01/2024</td>
-                                <td>0</td>
-                                <td> <i class="bi bi-trash-fill"></i> </td>
-                            </tr>
+                            <%}); %>
                             
                            </tbody>
         

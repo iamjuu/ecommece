@@ -1,19 +1,33 @@
-const { koreanproduct } = require("../model/database");
-const { planeproduct } = require("../model/database.js");
-
+// const { koreanproduct } = require("../model/database");
+// const { planeproduct } = require("../model/database.js");
+const {Product}=require('../model/database')
+const {User}=require('../model/database')
 module.exports = {
   dashboard: (req, res) => {
     res.render("admin/adminHome");
   },
-  user: (req, res) => {
-    res.render("admin/users");
-  },
-  product: (req, res) => {
-    res.render("admin/products");
+  user:async (req, res) => {
+    const USR=await  User.find()
+    res.render('admin/users',{users:USR})
+
   },
   category: (req, res) => {
     res.render("admin/category");
   },
+  addCategoryGet:(req,res)=>{
+    res.render('admin/addCategory');
+  },
+  addCategoryPost:async(req,res)=>{
+//     try{
+// cosnt {}=req.body
+//     }
+
+  },
+  
+  product: (req, res) => {
+    res.render("admin/products");
+  },
+ 
   coupen: (req, res) => {
     res.render("admin/coupon");
   },

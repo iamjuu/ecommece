@@ -29,7 +29,7 @@
 
 
   }
-  button{
+  button {
   border-radius: 5px;
     font-size: 1rem;
     width: 80px;
@@ -37,6 +37,10 @@
     border: 1px solid  black;
     background: transparent;
     color: white;
+  }
+  button a{
+    color: black;
+    text-decoration: none;
   }
 
   .button:hover{

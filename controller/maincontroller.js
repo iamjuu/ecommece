@@ -1,35 +1,25 @@
 const session = require("express-session");
-const { User } = require("../model/database");
-
+const { User,Profile } = require("../model/database");
 const { text } = require("body-parser");
-const nodemailer = require("nodemailer");
-require("dotenv").config()
+const optsender = require("../utils/sendemails");
+const otps = Math.floor(Math.random() * 900000) + 100000;
+require("dotenv").config();
 
-const otpGenerator = require('otp-generator')
-
-const optsender=require('../utils/sendemails')
-// const generateOTP=()=>{
-//   return Math.floor(1000 + Math.random() * 9000).toString();
-// }
-
-const otps =Math.floor(Math.random()*900000)+ 100000;
 
 module.exports = {
   signupGet: (req, res) => {
-
-
     if (req.session.email) {
-      res.redirect("user/userHome");
+      res.redirect("/user/userHome");
     } else {
-      res.render("user/signup")
-      
+      res.render("user/signup");
     }
   },
+
 
   signupPost: async (req, res) => {
     console.log(req.body);
     const { Username, email, phone, password, confirmpassword } = req.body;
-    optsender(email,otp)
+    optsender(email, otps);
 
     const data = {
       name: Username,
@@ -37,35 +27,26 @@ module.exports = {
       phone: phone,
       password: password,
     };
-    
-    
+
     const newuser = await User.create(data);
 
-await newuser.save()
+    await newuser.save();
 
-    
-    
+    console.log(newuser)
 
-res.redirect("/user/otp")
-  }
-  ,
-  otpGet:  (req, res) => {  
-    res.render("/user/otp");
-
-
+    res.redirect("/user/otp");
+  },
+  otpGet: (req, res) => {
+    res.render("user/otp");
   },
   otppost: (req, res) => {
-
-    const{otp}=req.body
-   if( otps== otp){
-    res.redirect('/user/login')
-   }
-   else{
-    res.redirect('/user/otp')
-   }
-
+    const { otp } = req.body;
+    if (otps == otp) {
+      res.redirect("/user/login");
+    } else {
+      res.redirect("/user/otp");
+    }
   },
-
 
   loginGet: (req, res) => {
     if (req.session.email) {
@@ -73,39 +54,47 @@ res.redirect("/user/otp")
     } else {
       res.render("user/login");
     }
-
   },
 
-  loginPost: async  (req, res) => {
-
+  loginPost: async (req, res) => {
     console.log(req.body.email);
-    
+
     const email = req.body.email;
     console.log(email);
-
+    console.log(User);
     try {
-      const usr = await User.findOne({ email: email });
-      console.log(usr);
 
-      if (usr) {
-        if (usr.role) {
-          req.session.role = usr.role;
+      const user=await User.findOne({ email : email });
+
+      console.log('user',user);
+
+      if (user) {
+        if (user.role) {
+          req.session.role = user.role;
           // res.redirect("/admin/adminHome");
-                res.render("admin/adminHome");
-
+          res.render("admin/adminHome");
         } else {
-          req.session.email = usr.email;
+          req.session.email = user.email;
           res.redirect("/user/userHome");
         }
       } else {
-
-        res.render("login");
+        res.render("user/login");
       }
-
     } catch (error) {
       console.error(error);
       res.status(500).send("Internal Server Error");
     }
+  },
+
+  forgotGet: (req, res) => {
+    res.render("user/forgot");
+  },
+
+  forgotPost: (req, res) => {
+    // console.log('iam post');
+
+    res.redirect("/user/login");
+    // console.log(req.body);
   },
 
   logoutGet: (req, res) => {
@@ -116,41 +105,4 @@ res.redirect("/user/otp")
       res.redirect("/login");
     });
   },
-
-  forgotGet:(req,res)=>{
-    res.render('user/forgot')
-  },
-
-  forgotPost:(req,res)=>{
-
-console.log('sending otp');
-    
-   
-   
-    
-
-    
-res.redirect("/forgot")
-
-  },
-  EmailVerificationGet:(req,res)=>{
-    res.render('emailverfication')
-  },
-  EmailVerificationPost:(req,res)=>{
-
-  }
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
+};
