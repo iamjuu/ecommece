@@ -2,7 +2,7 @@ const session = require("express-session");
 const { User,Profile } = require("../model/database");
 const { text } = require("body-parser");
 const optsender = require("../utils/sendemails");
-const otps = Math.floor(Math.random() * 900000) + 100000;
+const otpcode = Math.floor(Math.random() * 900000) + 100000;
 require("dotenv").config();
 
 
@@ -14,26 +14,24 @@ module.exports = {
       res.render("user/signup");
     }
   },
-
+// in signup post Headers. saving the data in data base 
 
   signupPost: async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const { Username, email, phone, password, confirmpassword } = req.body;
-    optsender(email, otps);
-
+    // calling a fuction for seding otp to email 
+    optsender(email,otpcode );
     const data = {
-      name: Username,
+      Username: Username,
       email: email,
       phone: phone,
       password: password,
     };
-
     const newuser = await User.create(data);
 
+  // saving the data into database 
     await newuser.save();
-
     console.log(newuser)
-
     res.redirect("/user/otp");
   },
   otpGet: (req, res) => {
@@ -41,7 +39,7 @@ module.exports = {
   },
   otppost: (req, res) => {
     const { otp } = req.body;
-    if (otps == otp) {
+    if (otpcode == otp) {
       res.redirect("/user/login");
     } else {
       res.redirect("/user/otp");
@@ -60,10 +58,10 @@ module.exports = {
     console.log(req.body.email);
 
     const email = req.body.email;
-    console.log(email);
+    // console.log(email);
     console.log(User);
     try {
-
+// here checking the email .when the user enterd email are in the database 
       const user=await User.findOne({ email : email });
 
       console.log('user',user);
@@ -71,7 +69,6 @@ module.exports = {
       if (user) {
         if (user.role) {
           req.session.role = user.role;
-          // res.redirect("/admin/adminHome");
           res.render("admin/adminHome");
         } else {
           req.session.email = user.email;

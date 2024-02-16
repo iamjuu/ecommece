@@ -36,8 +36,8 @@ background: #000000cb;
     border-radius: 30px;
 }
 .logout{
-    /* left: 280px; */
-    /* top: 50px; */
+    left: -180px;
+    top: -50px;
     position: relative;
     height: 50px;
     width: 200px;

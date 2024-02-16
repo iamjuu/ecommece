@@ -1,7 +1,17 @@
 const multer=require('multer')
-const storage=multer.diskStorage({
+
+const product=multer.diskStorage({
     destination:function(req,File,cb){
-        cb(null,'public/korean_image/');
+        cb(null,'public/products/mens wear/korean_image');
+    },
+    filename:function(req,file,cb){
+        cb(null,Date.now()+ '-'+ file.originalname)
+    }
+})
+
+const category=multer.diskStorage({
+    destination:function(req,File,cb){
+        cb(null,'public/category-images');
     },
     filename:function(req,file,cb){
         cb(null,Date.now()+ '-'+ file.originalname)
@@ -12,5 +22,9 @@ const storage=multer.diskStorage({
 
 
 
-const koreanupload= multer({storage : storage})
-module.exports=koreanupload
+const productUpload= multer({storage : product})
+const categoryUpload= multer({storage : category})
+module.exports={
+    productUpload,
+    categoryUpload
+}

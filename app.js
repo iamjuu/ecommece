@@ -13,7 +13,7 @@ const session = require('express-session');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 
-console.log(path.join(__dirname,'views'))
+// console.log(path.join(__dirname,'views'))
 
 
 

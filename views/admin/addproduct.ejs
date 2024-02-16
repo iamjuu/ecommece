@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add product</title>
-    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="/admins/css/admin.css">
+    <link rel="stylesheet" href="/admins/css/product.css">
+
 </head>
 <body>
     
-  <h1>ADD PRODUCT</h1>
-
+  
   <div class="all">
-    <div class="frm">
-      <form action="/addProduct" method="post" enctype="multipart/form-data"> 
+    <h1   id="add_product">ADD PRODUCT</h1>
+    <div class="frm_product">
+      <form action="/admin/css/addProduct" method="post" enctype="multipart/form-data"> 
 
-      <label for="image">Image</label>
-      <input type="file" accept="image/*" placeholder="Product image" id="image" name="image" required>
+      <label for="image">Image
 
-      <label for="name" id="name">Name</label>
-      <input type="text" placeholder="Product name" id="name" name="name" required>
+      <input type="file" accept="image/*" placeholder="Product image" id="image" name="image" required> 
+    </label> 
 
-      <label for="price">Price</label>
-      <input type="number" placeholder="Product price" id="price" name="price" required>
 
-      <label for="description">Description</label>
-      <textarea placeholder="Product description" id="description" name="description"  rows="4" cols="51" required></textarea>
+      <label  for="name" id="name">Name
+      <input  class="pro_inp" type="text" placeholder="Product name" id="name" name="name" required> 
+    </label> 
+    
+    
+      <label for="price">Price
+      <input   class="pro_inp1" type="number" placeholder="Product price" id="price" name="price" required> 
+    </label> 
 
-      <button type="submit">Add</button>
+
+      <label  class="pro_des" for="description">Description
+      <textarea   class="pro_txt" placeholder="Product description" id="description" name="description"  rows="4" cols="51" required></textarea> 
+    </label>
+      <button   class="pro_btn" type="submit">Add</button>
       
 
 

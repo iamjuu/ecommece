@@ -66,7 +66,7 @@ const productSchema = new mongoose.Schema({
       type: String,
       required: true,
   },
-  name: {
+  categoryName: {
       type: String,
       required: true,
   },
@@ -79,14 +79,27 @@ const productSchema = new mongoose.Schema({
       required:true
   },
 });
-
 const Product=mongoose.model("userproduct",profileSchema1)
 
 
+
+const categorySchema1 = new mongoose.Schema({
+    name: {
+      type: String,
+    },
+
+
+    Image: {
+      type: String,
+  }
+});
+
+const categoryModel = mongoose.model("category", categorySchema1); ;
 
 module.exports={
     User,
     Profile,
     Product,
+    categoryModel,
 
 }
