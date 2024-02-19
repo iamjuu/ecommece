@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>product details</title>
 </head>
 <body>
     <div class="container">
-        
+        <div class="main">
+            <div class="pic"></div>
+            <div class="details">
+                <h4>product name</h4>
+                <h4>product price</h4>
+                    <button    class="category_edit"> <a href="/admin/editproducts">
+                        <lord-icon
+                    src="https://cdn.lordicon.com/oqaajvyl.json"
+                    trigger="hover"
+                    style="width:50px;height:50px">
+                </lord-icon >  </a>
+            </button>
+  
+               
+                    <button  class="category_edit" > <a href=" /admin/category/delete/<%= category._id%>">
+                        <lord-icon  
+                    src="https://cdn.lordicon.com/vlnvqvew.json"
+                    trigger="hover"
+                    style="width:50px;height:50px">
+                </lord-icon>
+            </a>
+            </button> 
+
+          
+          
+            </div>
+        </div>
     </div>
 </body>
 </html>

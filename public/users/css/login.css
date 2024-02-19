@@ -5,11 +5,11 @@
 }
 .all{
     height: 100vh;
-    width: 100vw;
-    /* background: #0F2027;  */
-    background-image: url('/logo/pexels-ron-lach-9771816\ \(1\).jpg');
-    background-size:1550px 700px ;
-    background-repeat:no-repeat;
+    width: 100%;
+    background: #0F2027; 
+    /* background-image: url('/logo/pexels-ron-lach-9771816\ \(1\).jpg'); */
+    /* background-size:1550px 700px ; */
+    /* background-repeat:no-repeat; */
     background-position:top;
 
     /* background: linear-gradient(to right, #19aace, #16688b); */

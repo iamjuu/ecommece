@@ -460,8 +460,8 @@ textarea {
 
 
 .img_product{
-    width: 5rem;
-    height: 5rem;
+    width: 100px;
+    height: 100px;
     border: 1px solid;
 }
 .product_table .bi-trash-fill{

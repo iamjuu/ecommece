@@ -1,0 +1,22 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.container{
+    width: 100vw;
+    height: 100ch;
+    background: #cac9c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.main{
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 400px;
+    height: 500px;
+    background: #747474;
+}

@@ -1,96 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><lord-icon
-    src="https://cdn.lordicon.com/amlwgnug.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>PRODUCTS</title>
-    <link rel="stylesheet" href="/admins/css/admin.css">
-    <link rel="stylesheet" href="/admins/css/product.css">
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRODUCTS</title>
+
+    <link rel="stylesheet" href="/admins/css/admin.css" />
+    <link rel="stylesheet" href="/admins/css/product.css" />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
+
 <body>
     <div class="continer">
         <div class="layer1">
-            
             <div class="searchBar">
                 <!-- <input type="text" placeholder="  search product" class="searchBar1"> -->
             </div>
-            <!-- <div class="logout">
-                <button class="btn1">LOGOUT</button>
-            </div> -->
         </div>
         <div class="layer2">
             <div class="tabs">
                 <ul>
                     <li onclick="window.location.href='/dashboard'">
-<lord-icon
-    src="https://cdn.lordicon.com/dqrpfjei.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>DASHBOARD</li>
-                    <li onclick="window.location.href='/admin/users'"><lord-icon
-    src="https://cdn.lordicon.com/xfzuyvam.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>USERS</li>
-                    <li onclick="window.location.href='/admin/product'"><lord-icon
-    src="https://cdn.lordicon.com/amlwgnug.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>PRODUCTS</li>
+                        <lord-icon src="https://cdn.lordicon.com/dqrpfjei.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>DASHBOARD
+                    </li>
+                    <li onclick="window.location.href='/admin/users'">
+                        <lord-icon src="https://cdn.lordicon.com/xfzuyvam.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>USERS
+                    </li>
+                    <li onclick="window.location.href='/admin/products'">
+                        <lord-icon src="https://cdn.lordicon.com/amlwgnug.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>PRODUCTS
+                    </li>
 
-                    <li onclick="window.location.href='/admin/category'"><lord-icon
-    src="https://cdn.lordicon.com/kpvuihyi.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>CATEGORY</li>
+                    <li onclick="window.location.href='/admin/category'">
+                        <lord-icon src="https://cdn.lordicon.com/kpvuihyi.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>CATEGORY
+                    </li>
 
+                    <li onclick="window.location.href='/admin/coupen'">
+                        <lord-icon src="https://cdn.lordicon.com/nlmjynuq.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>COUPONS
+                    </li>
 
-                    <li onclick="window.location.href='/admin/coupen'"><lord-icon
-    src="https://cdn.lordicon.com/nlmjynuq.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>COUPONS</li>
-
-
-
-                    <li onclick="window.location.href='/admin/orders'"><lord-icon
-    src="https://cdn.lordicon.com/guothkao.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>ORDERS</li>
-                    <li onclick="window.location.href='/admin/banner'"><lord-icon
-    src="https://cdn.lordicon.com/fxtblcmc.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>BANNERS</li>
-<div class="logout">
-    <button class="btn1">LOGOUT</button>
-</div>
+                    <li onclick="window.location.href='/admin/orders'">
+                        <lord-icon src="https://cdn.lordicon.com/guothkao.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>ORDERS
+                    </li>
+                    <li onclick="window.location.href='/admin/banner'">
+                        <lord-icon src="https://cdn.lordicon.com/fxtblcmc.json" trigger="hover"
+                            style="width: 50px; height: 50px">
+                        </lord-icon>BANNERS
+                    </li>
+                    <div class="logout">
+                        <button class="btn1">LOGOUT</button>
+                    </div>
                 </ul>
             </div>
             <div class="content_part">
-
                 <div class="products_list_head">
-                    <p style="font-size: x-large; padding-left: 1.5rem;">Products</p>
+                    <p style="font-size: x-large; padding-left: 1.5rem">Products</p>
 
-
-                    
-                    <button class="add_product_btn_admin"> <a href="/admin/addproduct">Add Product</a> </button>
+                    <button class="add_product_btn_admin">
+                        <a href="/admin/addproducts">Add Product</a>
+                    </button>
                 </div>
-                
+
                 <div class="product_list">
                     <div class="product_table">
-
                         <table>
                             <thead>
                                 <tr>
+                                    <th>SI No</th>
                                     <th>Product Image</th>
-                                    <th>Product Name</th>
                                     <th>Price</th>
                                     <th>Cetegory</th>
                                     <th>Quantity</th>
@@ -100,34 +89,55 @@
                             </thead>
 
                             <tbody>
-                                    <!-- loop  -->
+                                <!-- loop  -->
 
-                                <tr>
-                                    <td>
-                                  <div class="img_product">
+                                <% allProducts.forEach((Product,index)=>{ %>
 
-                                    <img src="" alt="">
-                                  </div>
-                                  
-                                   
-                                    <td><%  %></td>
-                                    <td> <%  %> </td>
-                                    <td><%  %></td>
-                                    <td>
-                                        <i class="bi bi-pencil-square"></i>
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-trash-fill"></i>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                    
+
+                                        <td>
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td>
+                                               <div class="img_product">
+                                        
+                                            <img src="/productImages/<%=Product.Image%>" alt="" width="100px"
+                                            srcset="" />
+                                        </div> 
+                                        </td>
+                                        <td>
+                                            <% Product.name %>
+                                        </td>
+                                        <td>
+                                            <% Product.price %>
+                                        </td>
+                                        <td>
+                                            <% Product.cetegory %>
+                                        </td>
+                                        <td>
+                                            <% Product.Quantity %>
+                                        </td>
+
+                                        <td>
+                                            <button class="category_edit">
+                                                <a href="/admin/editproducts">
+                                                    <lord-icon src="https://cdn.lordicon.com/oqaajvyl.json"
+                                                        trigger="hover" style="width: 50px; height: 50px">
+                                                    </lord-icon>
+                                                </a>
+                                            </button>
+                                        </td>
+                                       
+                                    </tr>
+                                    <% }); %>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-                         
             </div>
         </div>
     </div>
 </body>
+
 </html>

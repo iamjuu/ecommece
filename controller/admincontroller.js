@@ -1,7 +1,8 @@
 
-const {Product}=require('../model/database')
+const { render } = require('ejs');
 const {User}=require('../model/database')
 const {categoryModel}=require('../model/database')
+const {ProductsModel}=require('../model/database')
 const {ObjectId} = require('mongodb') //for deteting category //
 
 module.exports = {
@@ -13,15 +14,56 @@ module.exports = {
     res.render('admin/users',{users:USR})
 
   },
+  
+  addproductsGet:(req,res)=>{
+    res.render('admin/addproducts')
+  },
+
+  addproductsPost:async(req,res)=>{
+    try{
+      console.log(req.body)
+      console.log(req.files);
+      const  Image=req.files[0].filename
+      const productname=req.body.productname
+      const price=req.body.price //set
+      const category=req.body.category
+      const quantity=req.body.quantity //set    
+console.log(Image);
+
+    const prodata= {
+        Image,
+        productname,
+        price,
+        category,
+        quantity,
+
+
+    }
+    console.log(prodata)
+const allproductsdata= new ProductsModel(prodata)
+await allproductsdata.save()
+res.redirect('/admin/products');
+}catch(err){
+  console.log(err,`something errr`);
+  res.status(500).send('Internal Server Error');
+}
+
+  },
+  products:async(req, res) => {
+const Productsdata= await ProductsModel.find({});
+
+  res.render('admin/products',{allProducts:Productsdata});
+  },
+
+
+
   addCategoryGet:async(req,res)=>{
     res.render('admin/addCategory');
   },
-  
-
   addCategoryPost:async(req,res)=>{
     try{
+      const Image = req.file.filename
     const name=req.body.name
-    const Image = req.file.filename
 
       const data ={
         name,
@@ -33,6 +75,7 @@ module.exports = {
     res.redirect('/admin/category')
 
     }
+
      catch(error) {
       console.log(error)
     }
@@ -43,6 +86,12 @@ module.exports = {
 
     res.render("admin/category",{categories:categorydata});
   },
+
+  
+
+  
+
+
   deleteCategoryGet:async (req, res) => {
     try {
       const categoryId = new ObjectId( req.params.categoryId)
@@ -56,17 +105,12 @@ module.exports = {
     }
 
   },
+  editCategoryGet:(req,res)=>{
 
+    render('admin/editproducts')
 
-  addproductsGet:(req,res)=>{
-
-    res.render('admin/addProduct')
   },
   
-  product:(req, res) => {
-res.render('admin/products')
-  },
- 
   coupen: (req, res) => {
     res.render("admin/coupon");
   },
@@ -78,7 +122,5 @@ res.render('admin/products')
   },
  
 
-  addproductPost:async(req,res)=>{
-
-  }
+ 
 };

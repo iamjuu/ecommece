@@ -19,9 +19,7 @@
             <div class="searchBar">
                 <!-- <input type="text" placeholder="  search product" class="searchBar1"> -->
             </div>
-            <!-- <div class="logout">
-                <button class="btn1">LOGOUT</button>
-            </div> -->
+         
         </div>
         <div class="layer2">
             <div class="tabs">
@@ -37,7 +35,7 @@
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>USERS</li>
-                    <li onclick="window.location.href='/admin/product'"><lord-icon
+                    <li onclick="window.location.href='/admin/products'"><lord-icon
     src="https://cdn.lordicon.com/amlwgnug.json"
     trigger="hover"
     style="width:50px;height:50px">
@@ -101,7 +99,7 @@
                                     <td> <img src="/category-images/<%= category.Image%>" width="100px"  alt="" srcset=""   ></td>
                                     <td> <%= category.name%> </td>
                                     <td>
-                                   <button    class="category_edit"> <a href=" ">
+                                   <button    class="category_edit"> <a href="/admin/editproducts">
                                             <lord-icon
                                         src="https://cdn.lordicon.com/oqaajvyl.json"
                                         trigger="hover"

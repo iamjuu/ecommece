@@ -5,7 +5,16 @@ const port= process.env.port||3000
 const env=require('dotenv')
 const mongoose=require('mongoose')
 const bodyParser = require('body-parser')
-mongoose.connect('mongodb://127.0.0.1/storeCollections').then(()=>{ console.log('db')})
+// mongoose.connect('mongodb://127.0.0.1/storeCollections').then(()=>{ console.log('db')})
+const connectDatabase=require('./config/DB')
+
+connectDatabase().then(()=>{
+  app.listen(port, () => {
+  console.log(`database connected at port of ${port}`);
+  })
+})
+
+
 
 const cache=require('nocache')
 const session = require('express-session');
@@ -20,6 +29,7 @@ app.set('views', path.join(__dirname,'views'));
 const mainrouter=require('./Routers/mainrouter')
 const adminrouter=require('./Routers/adminrouter')
 const userrouter=require('./Routers/userrouter')
+
 
 
 
@@ -47,11 +57,6 @@ app.use('/',adminrouter)
 app.use('/',mainrouter)
 app.use('/',userrouter)
 
-
-
-app.listen(port,()=>{
-    console.log('running');
-})
 
 
 

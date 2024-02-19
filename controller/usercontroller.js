@@ -12,5 +12,9 @@ module.exports={
     userHomePost:(req,res)=>{
         
 
-    }
+    },
+    productdetailsGet:(req,res)=>{
+            res.render("user/productdetails")
+    },
+
 }
