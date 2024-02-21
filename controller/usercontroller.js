@@ -1,12 +1,11 @@
 const session = require('express-session')
-const { koreanproduct } = require('../model/database')
-
+const {ProductsModel}=require("../model/database")
 
 module.exports={
-    userHomeGet:(req,res)=>{
-
+    userHomeGet:async(req,res)=>{
+const productshow=await ProductsModel.find({})
         // const koreanproducts=await koreanproduct.find()
-    res.render('user/userHome')
+    res.render('user/userHome',{allProducts:productshow})
     },
     
     userHomePost:(req,res)=>{

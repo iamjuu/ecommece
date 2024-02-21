@@ -188,6 +188,7 @@
     border-collapse: collapse;
 }
 .user_table th {
+    
     background-color: lightsteelblue;
     color: #4D4C7D;
     padding: 10px;
@@ -439,7 +440,7 @@ textarea {
     border-collapse: collapse;
 }
 .product_table th {
-    width: 400px;
+    width: 500px;
     background-color: lightsteelblue;
     color: #4D4C7D;
     padding-left: 35px;

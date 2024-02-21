@@ -58,27 +58,34 @@
     <!-- ********************************  -->
     <div class="main">
       <div class="head_text">
-          <h1>products list</h1></div>
+          <h1>PRODUCT LIST </h1></div>
 
       </div>
-      <div class="show">
-      <img  class="pic"  src="/show_image/l-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvteggrncre5.webp" alt="">
-      <img   class="pic"src="/show_image/s-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvtedcnagcsh.webp" alt="">
-      <img  class="pic" src="/show_image/s-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvtexfrrye8h.webp" alt="">
-      <img  class="pic" src="/show_image/xl-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagrvte86jsyd3g.webp" alt="">
-      <img  class="pic" src="/show_image/l-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfajzshhyqf.webp" alt="">
-     
-          <img  class="pic" src="/show_image/m-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfagfehmhs3.webp" alt="">
-          <img  class="pic" src="/show_image/m-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfawg93zfgz.webp" alt="">
-          <img  class="pic" src="/show_image/s-men-slim-fit-floral-printed-half-sleeve-casual-shirt-original-imagkwfaqqvupyqv.webp" alt="">
-          <img  class="pic" src="/show_image/s-mens-color-full-striped-shirt-certizo-original-imagqkmgxmzdcs36.webp" alt="">
+      <div class="show">      
+        <% allProducts.forEach((Product,index)=>{ %>
+           
+          
+                     <div class="img_product">
+              
+                  <img src="/productImages/<%=Product.Image%>" alt="" width="100px"
+                  srcset="" />
+              </div> 
+           
+             
+                  <%= Product.productName %>
+            
+            
+                  <%= Product.price %>
+            
+         
+             
+          </tr>
+          <% }); %>
 
-          <img  class="pic" src="/show_image/m-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagunhgbma5rh82.webp" alt="">
-          <img class="pic"  src="/show_image/l-half-sleeve-printed-shirt-blue-dove-original-imagtyv8kh5qyhgf.webp" alt="" >
-          <img  class="pic"  src="/show_image/m-men-casual-printed-half-sleeve-lycra-slim-fit-spread-collar-original-imagukxue2jkay4n.webp" alt="">
 
-
+       
       </div>
+
 
     </div>
 

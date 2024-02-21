@@ -55,29 +55,70 @@ const allproducts=new mongoose.Schema({
 },
   productName: {
   type : String ,
-  // require : true
+  // required : true
 },
 price: {
   type :Number,
-  // require : true
+  // required : true
 
 },
 category:{
   type : String ,
-  // require : true
+  // required : true
 },
 
 quantity:{
   type : String ,
-  // require : true
+  required : true
 }
 
 })
 
 const  ProductsModel = mongoose.model('Products',allproducts);
+
+
+
+const allcoupons=new mongoose.Schema({
+  couponName:{
+    type:String,
+    // required:true
+  },
+  couponDiscount: {
+    type: String,
+    required: true,
+  },
+  minOrderAmount:{
+    type:Number,
+    // required:true
+  },
+  maxOrderAmount:{
+    type:Number,
+    // required:true
+  },
+  startingDate:{
+    type: Date,
+    // required:true
+  },
+  endingDate:{
+    type: Date,
+    // required:true
+
+  }
+
+
+})
+const  CouponModel = mongoose.model('coupons',allcoupons)
+
+
+
+
+
+
+
 module.exports={
   User,
   categoryModel,
   ProductsModel,
+  CouponModel,
 
 }

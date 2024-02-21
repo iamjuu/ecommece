@@ -3,6 +3,7 @@ const { render } = require('ejs');
 const {User}=require('../model/database')
 const {categoryModel}=require('../model/database')
 const {ProductsModel}=require('../model/database')
+const {CouponModel}=require("../model/database")
 const {ObjectId} = require('mongodb') //for deteting category //
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
       console.log(req.body)
       console.log(req.files);
       const  Image=req.files[0].filename
-      const productname=req.body.productname
+      const productName=req.body.productName
       const price=req.body.price //set
       const category=req.body.category
       const quantity=req.body.quantity //set    
@@ -32,7 +33,7 @@ console.log(Image);
 
     const prodata= {
         Image,
-        productname,
+        productName:productName,
         price,
         category,
         quantity,
@@ -42,6 +43,7 @@ console.log(Image);
     console.log(prodata)
 const allproductsdata= new ProductsModel(prodata)
 await allproductsdata.save()
+console.log('allproductsdata:',allproductsdata);
 res.redirect('/admin/products');
 }catch(err){
   console.log(err,`something errr`);
@@ -49,10 +51,11 @@ res.redirect('/admin/products');
 }
 
   },
+
+
   products:async(req, res) => {
 const Productsdata= await ProductsModel.find({});
-
-  res.render('admin/products',{allProducts:Productsdata});
+res.render('admin/products',{allProducts:Productsdata});
   },
 
 
@@ -87,6 +90,48 @@ const Productsdata= await ProductsModel.find({});
     res.render("admin/category",{categories:categorydata});
   },
 
+  addcoupenGet:(req,res)=>{
+    res.render('admin/addCoupon');
+      },
+      addcouponPost:async(req,res)=>{
+        console.log("here");
+        try{
+          const couponName=req.body.couponName
+          const couponDiscount=req.body.couponDiscount
+          const minOrderAmount=req.body.minOrderAmount
+          const maxOrderAmount=req.body.maxOrderAmount
+          const startingDate=req.body.startingDate
+          const endingDate = req.body.endingDate; // Corrected variable name here
+
+
+            const data={
+              couponName,
+              couponDiscount,
+              minOrderAmount,
+              maxOrderAmount,
+              startingDate,
+              endingDate,
+           
+            }
+            const coupondata= new  CouponModel(data);
+            await coupondata.save()
+
+              console.log(`data is here`,coupondata)
+              res.redirect("/admin/coupon",)
+
+
+
+
+        }catch(err){
+          console.log(err,`addcoupon err`);
+        }
+
+      },
+      coupon:async (req, res) => {
+
+      const coupondata= await CouponModel.find({})
+        res.render("admin/coupon",{allcoupons:coupondata});
+      },
   
 
   
@@ -110,10 +155,7 @@ const Productsdata= await ProductsModel.find({});
     render('admin/editproducts')
 
   },
-  
-  coupen: (req, res) => {
-    res.render("admin/coupon");
-  },
+
   orders: (req, res) => {
     res.render("admin/orders");
   },

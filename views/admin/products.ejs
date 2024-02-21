@@ -43,7 +43,7 @@
                         </lord-icon>CATEGORY
                     </li>
 
-                    <li onclick="window.location.href='/admin/coupen'">
+                    <li onclick="window.location.href='/admin/coupon'">
                         <lord-icon src="https://cdn.lordicon.com/nlmjynuq.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>COUPONS
@@ -80,6 +80,7 @@
                                 <tr>
                                     <th>SI No</th>
                                     <th>Product Image</th>
+                                    <th>Product Name</th>
                                     <th>Price</th>
                                     <th>Cetegory</th>
                                     <th>Quantity</th>
@@ -107,27 +108,34 @@
                                         </div> 
                                         </td>
                                         <td>
-                                            <% Product.name %>
+                                            <%= Product.productName %>
                                         </td>
                                         <td>
-                                            <% Product.price %>
+                                            <%= Product.price %>
                                         </td>
                                         <td>
-                                            <% Product.cetegory %>
+                                            <%= Product.category %>
                                         </td>
                                         <td>
-                                            <% Product.Quantity %>
+                                            <%= Product.quantity %>
                                         </td>
-
                                         <td>
-                                            <button class="category_edit">
-                                                <a href="/admin/editproducts">
-                                                    <lord-icon src="https://cdn.lordicon.com/oqaajvyl.json"
-                                                        trigger="hover" style="width: 50px; height: 50px">
-                                                    </lord-icon>
-                                                </a>
-                                            </button>
-                                        </td>
+                                            <button    class="category_edit"> <a href="/admin/editproducts">
+                                                     <lord-icon
+                                                 src="https://cdn.lordicon.com/oqaajvyl.json"
+                                                 trigger="hover"
+                                                 style="width:50px;height:50px">
+                                             </lord-icon >  </a></button> </td>
+                                             <td>
+                                                 <button  class="category_edit" > <a href=" ">
+                                                     <lord-icon  
+                                                 src="https://cdn.lordicon.com/vlnvqvew.json"
+                                                 trigger="hover"
+                                                 style="width:50px;height:50px">
+                                             </lord-icon>
+                                         </a>
+                                         </button>   </td>
+                                       
                                        
                                     </tr>
                                     <% }); %>
