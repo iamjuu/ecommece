@@ -22,10 +22,23 @@ const allproducts=multer.diskStorage({
     }
  })
 
+ const allbannars=multer.diskStorage({
+    destination(req,file,cb)
+    {
+        cb(null,'public/bannarimage')
+    },
+    filename:function(req,file,cb)
+{
+    cb(null,Date.now()+ '-'+file.originalname)
+}
+   
+ })
 
 const categoryUpload= multer({storage : category})
 const productUpload=multer({storage:allproducts})
+const bannarupload=multer({storage:allbannars})
 module.exports={
     categoryUpload,
-    productUpload
+    productUpload,
+    bannarupload,
 }

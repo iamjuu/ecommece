@@ -16,12 +16,12 @@ const {
 
   router.get('/signup',signupGet)
   .post('/signup',signupPost)
-  .get('/user/otp',otpGet)
-  .post('/user/otp',otppost) 
-  .get("/user/login",loginGet)
-  .post("/user/login",loginPost)
-  .get('/user/forgot',forgotGet)
-  .post('/user/forgot',forgotPost)
+  .get('otp',otpGet)
+  .post('otp',otppost) 
+  .get("/login",loginGet)
+  .post("/login",loginPost)
+  .get('forgot',forgotGet)
+  .post('forgot',forgotPost)
   
   .get('/logout',logoutGet)
 

@@ -14,7 +14,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/user/signup",
+						"url": "http://localhost:8080signup",
 						"description": "This endpoint is used to sign up a user.\n\nThe request does not require any payload, and the response returns a status code of 200."
 					},
 					"response": []
@@ -84,7 +84,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/login",
+						"url": "http://localhost:8080login",
 						"description": "This API endpoint allows users to log in by sending a POST request to the specified URL. The request should include the user's email and password in the request body. Upon successful execution, the server returns a status code of 200."
 					},
 					"response": [
@@ -126,8 +126,8 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/request-otp",
-						"description": "\nThis endpoint makes an HTTP POST request to http://localhost:8080/user/reques-otp to request an OTP (One Time Password) for user verification. The request body should contain a JSON object with a \"mobileNumber\" field.\n\nUpon successful execution, the response will have a status code of 200 and a JSON object with the \"status\" field set to \"success\". It will also include a \"message\" indicating the success of the OTP request, and a \"data\" object containing the \"otpRequestId\" and \"expiresInMinutes\" fields.\n\n### Example Response\n```json\n{\n  \"status\": \"success\",\n  \"message\": \"OTP successfully sent to the user's registered email/phone number.\",\n  \"data\": {\n    \"otpRequestId\": \"123456789\",\n    \"expiresInMinutes\": 5\n  }\n}\n```\n"
+						"url": "http://localhost:8080request-otp",
+						"description": "\nThis endpoint makes an HTTP POST request to http://localhost:8080reques-otp to request an OTP (One Time Password) for user verification. The request body should contain a JSON object with a \"mobileNumber\" field.\n\nUpon successful execution, the response will have a status code of 200 and a JSON object with the \"status\" field set to \"success\". It will also include a \"message\" indicating the success of the OTP request, and a \"data\" object containing the \"otpRequestId\" and \"expiresInMinutes\" fields.\n\n### Example Response\n```json\n{\n  \"status\": \"success\",\n  \"message\": \"OTP successfully sent to the user's registered email/phone number.\",\n  \"data\": {\n    \"otpRequestId\": \"123456789\",\n    \"expiresInMinutes\": 5\n  }\n}\n```\n"
 					},
 					"response": [
 						{
@@ -169,7 +169,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/verify-otp",
+						"url": "http://localhost:8080verify-otp",
 						"description": "## Verify OTP\n\nThis endpoint is used to verify the OTP (One Time Password) provided by the user.\n\n### Request Body\n\n- `otp` (string, required): The OTP provided by the user for verification.\n    \n\n### Response\n\n- Status: 200"
 					},
 					"response": []
@@ -188,7 +188,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/user/profile",
+						"url": "http://localhost:8080profile",
 						"description": "\nThis endpoint makes an HTTP GET request to retrieve the user's profile information. The response will include the user's username, email, mobile number, address details such as house number, street, district, zip code, and state.\n\nExample Response:\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"userName\": \"John\",\n        \"email\": \"John@gmail.com\",\n        \"mobile_no\": \"9988776655\",\n        \"house_no\": \"122\",\n        \"street\": \"abcd\",\n        \"district\": \"abcd\",\n        \"zip\": \"223344\",\n        \"state\": \"xyz\"\n    }\n}\n```\n"
 					},
 					"response": [
@@ -197,7 +197,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/user/profile"
+								"url": "http://localhost:8080profile"
 							},
 							"status": "OK",
 							"code": 200,
@@ -222,7 +222,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/profile/update",
+						"url": "http://localhost:8080profile/update",
 						"description": "\n### Update User Profile\n\nThis endpoint allows you to update the user profile with the provided details.\n\n#### Request Body\n- `userName` (text, optional): The user's name.\n- `email` (text, optional): The user's email address.\n- `mobile_no` (text, optional): The user's mobile number.\n- `house_no` (text, optional): The user's house number.\n- `street` (text, optional): The user's street address.\n- `district` (text, optional): The user's district.\n- `zip` (text, optional): The user's ZIP code.\n- `state` (text, optional): The user's state.\n\n#### Response\n- `status`: Indicates the status of the request, whether it was successful or not.\n- `data`: An object containing the updated user profile details if the request was successful.\n\n#### Example\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"userName\": \"John\",\n        \"email\": \"John@gmail.com\",\n        \"mobile_no\": \"9988776655\",\n        \"house_no\": \"122\",\n        \"street\": \"abcd\",\n        \"district\": \"abcd\",\n        \"zip\": \"223344\",\n        \"state\": \"xyz\"\n    }\n}\n```\n"
 					},
 					"response": [
@@ -231,7 +231,7 @@
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
-								"url": "http://localhost:8080/user/profile/update"
+								"url": "http://localhost:8080profile/update"
 							},
 							"status": "OK",
 							"code": 200,
@@ -265,7 +265,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/password/forgot",
+						"url": "http://localhost:8080password/forgot",
 						"description": "\n### User Password Forgot\n\nThis endpoint is used to initiate the process of resetting a user's password by sending a reset link to the provided email address.\n\n**Request Body**\n- email (string, required): The email address of the user for whom the password reset link will be sent.\n\n**Response**\n- Status: 200\n- Body: null\n\n"
 					},
 					"response": [
@@ -283,7 +283,7 @@
 										}
 									}
 								},
-								"url": "http://localhost:8080/user/password/forgot"
+								"url": "http://localhost:8080password/forgot"
 							},
 							"_postman_previewlanguage": null,
 							"header": null,
@@ -315,7 +315,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/password/update",
+						"url": "http://localhost:8080password/update",
 						"description": "### Update User Password\n\nThis endpoint is used to update the password for a user.\n\n#### Request Body\n\n- `newPassword` (string, required): The new password for the user.\n- `confirmPassword` (string, required): Confirmation of the new password.\n    \n\n#### Response\n\n- Status: 200\n- Body: null"
 					},
 					"response": []
@@ -335,8 +335,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/user/cart",
-						"description": "\n    \n# GET /user/cart\n\nThis endpoint is used to retrieve the cart details for the user.\n\n## Response\n\n- Status: 200\n\n"
+						"url": "http://localhost:8080cart",
+						"description": "\n    \n# GET cart\n\nThis endpoint is used to retrieve the cart details for the user.\n\n## Response\n\n- Status: 200\n\n"
 					},
 					"response": []
 				},
@@ -675,7 +675,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/admin/user/:id",
+							"raw": "http://localhost:8080/admin:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -693,7 +693,7 @@
 								}
 							]
 						},
-						"description": "### Delete User by ID\n\nThis endpoint is used to delete a specific user by their ID.\n\n#### Request\n\n- Method: DELETE\n- URL: `http://localhost:8080/admin/user/:id`\n    \n\n#### Response\n\n- Status: 200"
+						"description": "### Delete User by ID\n\nThis endpoint is used to delete a specific user by their ID.\n\n#### Request\n\n- Method: DELETE\n- URL: `http://localhost:8080/admin:id`\n    \n\n#### Response\n\n- Status: 200"
 					},
 					"response": []
 				},

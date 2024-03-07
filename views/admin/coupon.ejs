@@ -26,25 +26,25 @@
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>DASHBOARD</li>
-                    <li onclick="window.location.href='/admin/users'"><lord-icon
+                    <li onclick="window.location.href='/users'"><lord-icon
     src="https://cdn.lordicon.com/xfzuyvam.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>USERS</li>
-                    <li onclick="window.location.href='/admin/products'"><lord-icon
+                    <li onclick="window.location.href='/products'"><lord-icon
     src="https://cdn.lordicon.com/amlwgnug.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>PRODUCTS</li>
 
-                    <li onclick="window.location.href='/admin/category'"><lord-icon
+                    <li onclick="window.location.href='/catergory'"><lord-icon
     src="https://cdn.lordicon.com/kpvuihyi.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>CATEGORY</li>
 
 
-                    <li onclick="window.location.href='/admin/coupon'"><lord-icon
+                    <li onclick="window.location.href='/coupon'"><lord-icon
     src="https://cdn.lordicon.com/nlmjynuq.json"
     trigger="hover"
     style="width:50px;height:50px">
@@ -52,12 +52,12 @@
 
 
 
-                    <li onclick="window.location.href='/admin/orders'"><lord-icon
+                    <li onclick="window.location.href='/orders'"><lord-icon
     src="https://cdn.lordicon.com/guothkao.json"
     trigger="hover"
     style="width:50px;height:50px">
 </lord-icon>ORDERS</li>
-                    <li onclick="window.location.href='/admin/banner'"><lord-icon
+                    <li onclick="window.location.href='/admin/bannar'"><lord-icon
     src="https://cdn.lordicon.com/fxtblcmc.json"
     trigger="hover"
     style="width:50px;height:50px">
@@ -82,7 +82,7 @@
 
                                 <tr>
                                     <th>Sl.No</th>
-                                    <th>Coupon ID</th>
+                                    <!-- <th>Coupon ID</th> -->
                                     <th>Coupon Name</th>
                                     <th>Coupon Discount</th>
                                     <th>Minimum Amount</th>
@@ -98,18 +98,34 @@
 
                                 <tr>
                                     <td> <%= index +1  %> </td>
+            
                                     <td><%= coupon.couponName %></td>
                                     <td><%=  coupon.couponDiscount %></td>
                                     <td><%=  coupon.minOrderAmount %></td>
                                     <td><%= coupon.maxOrderAmount %></td>
-                                    <td><%= coupon.startingDate %></td>
-                                    <td><%= coupon.endingDate %></td>
-                                    <td>    </td>
-                                    <td>   </td>
+                                    <td><%= coupon.startingDate.toDateString() %></td>
+                                    <td><%= coupon.endingDate.toDateString() %></td>
+                                    <td>  
+                                        <button    class="category_edit"> <a href="/admin/coupon/editcoupon">
+                                                 <lord-icon
+                                             src="https://cdn.lordicon.com/oqaajvyl.json"
+                                             trigger="hover"
+                                             style="width:50px;height:50px">
+                                         </lord-icon >  </a></button>  </td>
+                                    <td> 
+                                        <button  class="category_edit" > <a href="/admin/coupon/delete/<%= coupon._id %> ">
+                                                     <lord-icon  
+                                                 src="https://cdn.lordicon.com/vlnvqvew.json"
+                                                 trigger="hover"
+                                                 style="width:50px;height:50px">
+                                             </lord-icon>
+                                         </a>
+                                         </button>
+                                          </td>
                                     
                                 </tr>
 
-                                <% }); %>
+                                <% }) %>
 
                             </tbody>
     

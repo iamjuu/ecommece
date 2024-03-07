@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product detail page</title>
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="/users/css/productdetails.css" />
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <main>
+    <!-- 
+      - #PRODUCT
+    -->
+    <article>
+      <section class="section product" aria-label="product">
+        
+        <div class="container">
+              <div class="product-slides">
+                <div class="slider-banner" data-slider>
+                 
+
+        
+
+                  <figure class="product-banner">
+                    <img src="/productImages/<%= product.Image%>" width="400" height="400" loading="lazy" alt=" "
+                      class="img-cover" />
+                  </figure>
+                </div>
+
+                <button class="slide-btn prev" aria-label="Previous image" data-prev>
+                  <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
+                </button>
+
+                <button class="slide-btn next" aria-label="Next image" data-next>
+                  <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+
+              <div class="product-content">
+                <p class="product-subtitle">
+                  <%= product.productName %>
+                </p>
+
+
+                <p class="product-text">
+
+                </p>
+
+                <div class="wrapper">
+                  <span class="price" data-total-price><%= Math.round((product.price - discountrate)) %></span>
+                  <span class="badge"><%=product.discount%>%</span>
+
+
+                  <del class="del">
+                    <span style="display: flex;">$<span class="offprice" data-total-price1><%= product.price %></span></span>
+
+                   
+                  </del>
+                </div>
+
+                <div class="btn-group">
+                  <div class="counter-wrapper">
+                    
+                
+                    <button class="cart-btn">
+                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                     <a href="/cart"> <span  style="color: white;" class="span">Add to cart</span> </a> 
+                    </button>
+
+                  </div>
+
+                
+
+                  <button class="cart-btn">
+                    <span class="span">Buy Now</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+          </section>
+          
+        </article>
+
+  </main>
+
+  <script>
+
+   
+
+
+    /**
+     * add event on element
+     */
+
+    const addEventOnElem = function (elem, type, callback) {
+      if (elem.length !== undefined) {
+        for (let i = 0; i < elem.length; i++) {
+          elem[i].addEventListener(type, callback);
+        }
+      } else {
+        elem.addEventListener(type, callback);
+      }
+    };
+
+    /**
+     * navbar toggle
+     */
+
+    const navbar = document.querySelector("[data-navbar]");
+    const navToggler = document.querySelectorAll("[data-nav-toggler]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const toggleNav = function () {
+      navbar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    };
+
+    addEventOnElem(navToggler, "click", toggleNav);
+
+    /**
+     * slider funtionality
+     */
+
+    const slider = document.querySelector("[data-slider]");
+    const nextBtn = document.querySelector("[data-next]");
+    const prevBtn = document.querySelector("[data-prev]");
+
+    // set the slider default position
+    let sliderPos = 0;
+
+    // set the number of total slider items
+    const totalSliderItems = 4;
+
+    // make next slide btn workable
+    const slideToNext = function () {
+      sliderPos++;
+      slider.style.transform = `translateX(-${sliderPos}00%)`;
+
+      sliderEnd();
+    };
+
+    addEventOnElem(nextBtn, "click", slideToNext);
+
+    // make prev slide btn workable
+    const slideToPrev = function () {
+      sliderPos--;
+      slider.style.transform = `translateX(-${sliderPos}00%)`;
+
+      sliderEnd();
+    };
+
+    addEventOnElem(prevBtn, "click", slideToPrev);
+
+    // check when slider is end then what should slider btn do
+    function sliderEnd() {
+      if (sliderPos >= totalSliderItems - 1) {
+        nextBtn.classList.add("disabled");
+      } else {
+        nextBtn.classList.remove("disabled");
+      }
+
+      if (sliderPos <= 0) {
+        prevBtn.classList.add("disabled");
+      } else {
+        prevBtn.classList.remove("disabled");
+      }
+    }
+
+    sliderEnd();
+
+// Assuming qtyElem and totalPriceElem are defined elsewhere in your code.
+
+
+
+  </script>
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,5 @@
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
+const { required } = require('nodemon/lib/config');
 
 const signupschema1= new mongoose.Schema({
     Username:{
@@ -20,6 +21,11 @@ const signupschema1= new mongoose.Schema({
     role:{
         type:Boolean,
         default:false
+    },
+    verified:{
+      default:false,
+      type:Boolean
+
     }
     
 })
@@ -49,10 +55,10 @@ const categoryModel = mongoose.model("category", categorySchema1); ;
 
 
 const allproducts=new mongoose.Schema({
-  Image: {
+  Image: [{
     type: String,
     // required: true,
-},
+}],
   productName: {
   type : String ,
   // required : true
@@ -69,8 +75,17 @@ category:{
 
 quantity:{
   type : String ,
-  required : true
+  // required : true
+},
+description:{
+  type : String ,
+  // required : true
+},
+discount:{
+  type:  Number,
+    // required : true  
 }
+
 
 })
 
@@ -111,8 +126,76 @@ const  CouponModel = mongoose.model('coupons',allcoupons)
 
 
 
+//database schema for cart
+const allCarts=new mongoose.Schema({
+  userId :{
+    type: mongoose.Schema.Types.ObjectId,
+  },
+  products:Array,
+})
+
+const cartModel =mongoose.model('cart',allCarts);
+const allbannars= new mongoose.Schema({
+  Image:[{
+    type:String,
+    // required:true,
+  }],
+  bannername:{
+    type:String,
+     // required:true  
+  },
+  Amount:{
+  type:Number,
+     // required:true  
+
+  },
+  startingDate:{
+    type:String,
+    // required:true  
+  },
+  endingDate:{
+    type:String,
+    // required:true  
+  }
+})
+const BannarModel=mongoose.model('Bannar',allbannars);
+
+const profiles=new mongoose.Schema({
+  Username: {type: String ,
+    // required: true 
+},
+  email: {type: String,
+        // required: true   
+  },
+
+  phone:{
+    type : Number,
+    required:true
+  },
+  DOB:{
+    type:String,
+    // required:true
+  },
+  
+
+})
+const profilemodel=mongoose.model('profile',profiles)
 
 
+const wishlists= new mongoose.Schema({
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'signupDatas',
+    required:true
+  },
+  products:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'Products',
+
+
+  }]
+})
+const wishlistmodel=mongoose.model('wishlist',wishlists)
 
 
 module.exports={
@@ -120,5 +203,9 @@ module.exports={
   categoryModel,
   ProductsModel,
   CouponModel,
+  cartModel,
+  BannarModel,
+  profilemodel,
+  wishlistmodel
 
 }

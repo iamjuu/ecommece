@@ -1,32 +1,46 @@
 const express=require('express')
 const router=express.Router()
-const admin=require("../controller/admincontroller")
-const { categoryUpload, productUpload} =  require('../middleware/multer')
+const {dashboard,}=require("../controller/admincontroller")
 
 
-router.get( "/dashboard", admin.dashboard)
-      .get( "/admin/users",admin.user)
+
+const { categoryUpload, productUpload,bannarupload} =  require('../middleware/multer')
 
 
-      .get("/admin/products",admin.products)
-      .get('/admin/addproducts',admin.addproductsGet )
-      .post("/admin/addproducts",productUpload.array('productImage'),admin.addproductsPost)
+router.get( "/dashboard", dashboard)
 
 
-      .get("/admin/category",admin.category)
-      .get("/admin/addcategory",admin.addCategoryGet)
-      .post("/admin/addcategory",categoryUpload.single('Image'), admin.addCategoryPost)
+
+      // .get( "/users",admin.user)
 
 
-      .get("/admin/coupon",admin.coupon)
-      .get("/admin/addCoupon",admin.addcoupenGet)
-      .post("/admin/addCoupon",admin.addcouponPost)
+     
 
 
-      .get("/admin/orders",admin.orders)
-      .get("/admin/banner",admin.banner)
-      .get('/admin/category/delete/:categoryId',admin.deleteCategoryGet)
-      .get("/admin/editproducts/",admin.editCategoryGet)
+      // .get("/category",admin.category)
+      // .get("/addcategory",admin.addCategoryGet)
+      // .post("/addcategory",categoryUpload.single('Image'), admin.addCategoryPost)
+
+
+      // .get("/coupon",admin.coupon)
+      // .get("/addCoupon",admin.addcoupenGet)
+      // .post("/addCoupon",admin.addcouponPost)
+
+
+      // .get("/orders",admin.orders)
+
+      // .get("/bannar",admin.bannar)
+      // .get("/addbannar",admin.addBannarGet)
+      // .post("/addbannar" ,bannarupload.single('Image'),admin.addBannarPost)
+
+
+      // .get('/category/delete/:categoryId',admin.deleteCategoryGet)
+      // .delete("/products/delete/:_id",admin.deleteproductsGet)
+      // .get("/bannar/delete/:bannarId",admin.deletebannarGet)
+      // .get("/coupon/delete/:couponId",admin.deleteCouponGet)
+
+
+      // .get("/editproducts/:_id",admin.editProductGet)
 
 
 module.exports=router

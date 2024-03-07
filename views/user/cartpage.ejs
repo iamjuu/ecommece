@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/users/css/cart.css">
+    
+</head>
+<body>
+
+<h1>Shopping Cart</h1>
+
+<div id="cart">
+    <!-- Cart items will be displayed here -->
+</div>
+
+<script>
+    const cartItems = [
+        { id: 1, name: 'Product 1', price: 20, quantity: 1, image: 'product1.jpg' },
+        { id: 2, name: 'Product 2', price: 30, quantity: 1, image: 'product2.jpg' },
+        // Add more items as needed
+    ];
+
+    function displayCart() {
+        const cartContainer = document.getElementById('cart');
+        cartContainer.innerHTML = '';
+
+        cartItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('cart-item');
+            itemDiv.innerHTML = `
+                <img src="/productImages/${item.image}" alt="${item.name}">
+                <div>
+                    <p>${item.name} - $${item.price} - Quantity: ${item.quantity}</p>
+                    <p>Total Price: $${item.price * item.quantity}</p>
+                </div>
+                <button onclick="removeItem(${item.id})">Remove</button>
+                <button onclick="increaseQuantity(${item.id})">+</button>
+                <button onclick="decreaseQuantity(${item.id})">-</button>
+            `;
+            cartContainer.appendChild(itemDiv);
+        });
+
+        const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const totalDiv = document.createElement('div');
+        totalDiv.innerHTML = `<p>Total Price: $${totalPrice}</p>`;
+        cartContainer.appendChild(totalDiv);
+    }
+
+    function removeItem(itemId) {
+        const index = cartItems.findIndex(item => item.id === itemId);
+        if (index !== -1) {
+            cartItems.splice(index, 1);
+            displayCart();
+        }
+    }
+
+    function increaseQuantity(itemId) {
+        const index = cartItems.findIndex(item => item.id === itemId);
+        if (index !== -1) {
+            cartItems[index].quantity++;
+            displayCart();
+        }
+    }
+
+    function decreaseQuantity(itemId) {
+        const index = cartItems.findIndex(item => item.id === itemId);
+        if (index !== -1 && cartItems[index].quantity > 1) {
+            cartItems[index].quantity--;
+            displayCart();
+        }
+    }
+
+    displayCart();
+</script>
+
+</body>
+</html>

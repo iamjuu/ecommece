@@ -8,8 +8,7 @@ const  sendEmail = (email,otp) => {
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.AUTH_EMAIL,
-      pass: process.env.APP_PASSWORD,
+  
     },
   });
   

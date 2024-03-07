@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="/admins/css/admin.css" />
     <link rel="stylesheet" href="/admins/css/product.css" />
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+
     <div class="continer">
         <div class="layer1">
             <div class="searchBar">
-                <!-- <input type="text" placeholder="  search product" class="searchBar1"> -->
             </div>
         </div>
         <div class="layer2">
@@ -26,24 +28,24 @@
                             style="width: 50px; height: 50px">
                         </lord-icon>DASHBOARD
                     </li>
-                    <li onclick="window.location.href='/admin/users'">
+                    <li onclick="window.location.href='/users'">
                         <lord-icon src="https://cdn.lordicon.com/xfzuyvam.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>USERS
                     </li>
-                    <li onclick="window.location.href='/admin/products'">
+                    <li onclick="window.location.href='/products'">
                         <lord-icon src="https://cdn.lordicon.com/amlwgnug.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>PRODUCTS
                     </li>
 
-                    <li onclick="window.location.href='/admin/category'">
+                    <li onclick="window.location.href='/catergory'">
                         <lord-icon src="https://cdn.lordicon.com/kpvuihyi.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>CATEGORY
                     </li>
 
-                    <li onclick="window.location.href='/admin/coupon'">
+                    <li onclick="window.location.href='/coupon'">
                         <lord-icon src="https://cdn.lordicon.com/nlmjynuq.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>COUPONS
@@ -54,7 +56,7 @@
                             style="width: 50px; height: 50px">
                         </lord-icon>ORDERS
                     </li>
-                    <li onclick="window.location.href='/admin/banner'">
+                    <li onclick="window.location.href='/admin/bannar'">
                         <lord-icon src="https://cdn.lordicon.com/fxtblcmc.json" trigger="hover"
                             style="width: 50px; height: 50px">
                         </lord-icon>BANNERS
@@ -94,18 +96,16 @@
 
                                 <% allProducts.forEach((Product,index)=>{ %>
 
-                                    <tr>
-                                    
-
+                                    <tr class="row_<%=Product._id%>">
                                         <td>
                                             <%= index + 1 %>
                                         </td>
                                         <td>
-                                               <div class="img_product">
-                                        
-                                            <img src="/productImages/<%=Product.Image%>" alt="" width="100px"
-                                            srcset="" />
-                                        </div> 
+                                            <div class="img_product">
+
+                                                <img src="/productImages/<%=Product.Image%>" alt="" width="100px"
+                                                    srcset="" />
+                                            </div>
                                         </td>
                                         <td>
                                             <%= Product.productName %>
@@ -120,23 +120,24 @@
                                             <%= Product.quantity %>
                                         </td>
                                         <td>
-                                            <button    class="category_edit"> <a href="/admin/editproducts">
-                                                     <lord-icon
-                                                 src="https://cdn.lordicon.com/oqaajvyl.json"
-                                                 trigger="hover"
-                                                 style="width:50px;height:50px">
-                                             </lord-icon >  </a></button> </td>
-                                             <td>
-                                                 <button  class="category_edit" > <a href=" ">
-                                                     <lord-icon  
-                                                 src="https://cdn.lordicon.com/vlnvqvew.json"
-                                                 trigger="hover"
-                                                 style="width:50px;height:50px">
-                                             </lord-icon>
-                                         </a>
-                                         </button>   </td>
-                                       
-                                       
+
+                                            <button class="category_edit"> <a
+                                                    href="/admin/editproducts/<%= Product._id %>">
+                                                    <lord-icon src="https://cdn.lordicon.com/oqaajvyl.json"
+                                                        trigger="hover" style="width:50px;height:50px">
+                                                    </lord-icon> </a></button>
+                                        </td>
+                                        <td>
+                                            <button class="category_edit"
+                                                onclick="deleteProduct(event,'<%=Product._id%>')">
+                                                <lord-icon src="https://cdn.lordicon.com/vlnvqvew.json" trigger="hover"
+                                                    style="width:50px;height:50px">
+                                                </lord-icon>
+                                                </a>
+                                            </button>
+                                        </td>
+
+
                                     </tr>
                                     <% }); %>
                             </tbody>
@@ -147,5 +148,53 @@
         </div>
     </div>
 </body>
+<script>
+    async function deleteProduct(event, productId) {
+        try {
+            event.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await axios.delete('/admin/products/delete/' + productId)
+                    if (response.status == 200) {
+                        document.querySelector(`.row_${productId}`).remove()
+                    }
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your imaginary file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
+</script>
 
 </html>

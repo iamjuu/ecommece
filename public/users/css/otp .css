@@ -10,9 +10,8 @@
     height: 700px;
     display: flex;
  align-items: center; 
- /* background:linear-gradient(135deg,rgb(192, 243, 255),rgb(0, 255, 102)); */
  
-  background: #000000;
+  background: #a7a6a6;
     justify-content: center;
 }
 .form{
@@ -25,8 +24,8 @@ align-items: center;
     background:linear-gradient(135deg,rgba(236, 236, 236, 0.067),rgba(241, 241, 241, 0.173));
 }
 label{
-    margin-left: 10px;
-    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.563);
+    font-size: 1rem;
 }
 .inp{
     background-color: #c4c2c231;
@@ -37,16 +36,15 @@ label{
     border-radius: 5px;
     border: none;
 }
-.btn{
- 
-    /* background: transparent; */
-    background-color: red;
-    border: none;
+
+.otpbtn{
+  margin-top: 10px;
     height: 30px;
     width: 70px;
-    margin-top: 20px;
-}
-button:hover{
+    border: 1px solid;
     border-radius: 5px;
-    border: 1.2px solid black;
+    text-align: center;
+  
 }
+
+
