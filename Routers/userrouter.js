@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const {user,profile,editprofileGet}=require("../controller/usercontroller")
+const {user,profileGet,profilepost}=require("../controller/usercontroller")
 const { userHomeGet } = require("../controller/usercontroller");
-const {addToCartGet}=require("../controller/cartController")
+const {CartGet}=require("../controller/cartController")
 
 
 router.get("/users",user)
       .get("/userHome", userHomeGet)
-      .get("/cart",addToCartGet)
-      .get("/profile", profile)
-      .get("/user/addprofile",editprofileGet) // get the profile page of a
+      .get("/cart",CartGet)
+      .get("/profile", profileGet)
+      .get("/profile",profilepost) // get the profile page of a
 
 
 

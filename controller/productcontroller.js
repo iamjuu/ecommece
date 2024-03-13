@@ -14,7 +14,7 @@ module.exports={
       addproductsPost: async (req, res) => {
         try {
           const{productName,price,category,quantity,description,discount}=req.body
-          const image=req.files.map(file => '/productImages'+file.filename)
+          const image=req.files.map(file => file.filename)
     
           const prodata = {
             Image:image,
@@ -25,6 +25,8 @@ module.exports={
             description,
             discount,
           };
+
+          console.log(prodata);
           const allproductsdata = new ProductsModel(prodata);
           await allproductsdata.save();
     
@@ -39,6 +41,7 @@ module.exports={
       products: async (req, res) => {
         const Productsdata = await ProductsModel.find({});
         res.render("admin/products", { allProducts: Productsdata });
+        console.log(Productsdata)
       },
 
 
@@ -50,5 +53,17 @@ module.exports={
         const discountrate = (price * discount) / 100;
         res.render("user/productdetails", { product, discountrate });
       },
-
+      deleteproductsGet: async (req, res) => {
+        try {
+          const productId =req.params.id
+          console.log(productId);
+          res.status(200).json({message:true})
+          await ProductsModel.findByIdAndDelete(productId); 
+        } catch (err) {
+          console.log(err, `product delete erorr`);
+        }
+},
+editproductGet:(req,res)=>{
+  res.render("admin/editproduct")
+}
 }

@@ -32,7 +32,7 @@ const couponrouter=require("./Routers/couponrouter")
 const orderruoter=require("./Routers/orderruoter")
 const bannarrouter=require("./Routers/bannarruoter")
 const wishlistrouter=require("./Routers/wishlistrouter")
-
+const cartrouter=require("./Routers/cartrouter")
 
 
 
@@ -62,5 +62,6 @@ app.use('/',couponrouter)
 app.use("/",orderruoter);
 app.use("/",bannarrouter)
 app.use("/",wishlistrouter)
+app.use("/",cartrouter)
 
 

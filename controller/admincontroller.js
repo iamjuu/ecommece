@@ -31,15 +31,7 @@ module.exports = {
 
 
 
-  // deleteproductsGet: async (req, res) => {
-  //   try {
-  //     const productId = new ObjectId(req.params._id);
-  //     console.log(productId);
-  //     res.status(200).json({message:"deleted successfully"})
-  //     await ProductsModel.findByIdAndDelete(productId); 
-  //   } catch (err) {
-  //     console.log(err, `product delete erorr`);
-  //   }
+
   // },
   // deleteCategoryGet: async (req, res) => {
   //   try {

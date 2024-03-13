@@ -126,15 +126,8 @@ const  CouponModel = mongoose.model('coupons',allcoupons)
 
 
 
-//database schema for cart
-const allCarts=new mongoose.Schema({
-  userId :{
-    type: mongoose.Schema.Types.ObjectId,
-  },
-  products:Array,
-})
 
-const cartModel =mongoose.model('cart',allCarts);
+
 const allbannars= new mongoose.Schema({
   Image:[{
     type:String,
@@ -161,6 +154,10 @@ const allbannars= new mongoose.Schema({
 const BannarModel=mongoose.model('Bannar',allbannars);
 
 const profiles=new mongoose.Schema({
+
+  user:{
+    type:mongoose.Types.ObjectId,
+  },
   Username: {type: String ,
     // required: true 
 },
@@ -172,10 +169,15 @@ const profiles=new mongoose.Schema({
     type : Number,
     required:true
   },
-  DOB:{
-    type:String,
-    // required:true
+  address: {
+    type: String,
+    required: true,
   },
+  age: {
+    type: Number,
+    required: true,
+  }
+
   
 
 })
@@ -196,6 +198,43 @@ const wishlists= new mongoose.Schema({
   }]
 })
 const wishlistmodel=mongoose.model('wishlist',wishlists)
+
+
+
+//database schema for cart
+const Carts=new mongoose.Schema({
+  userId :{
+    type: mongoose.Schema.Types.ObjectId,
+  },
+  products:[{
+    product:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref: 'Products',
+    },
+    quantity:{
+      type:Number,
+      default:1,
+      // required:true
+    },
+    price:{
+      type:Number,
+      // required:true 
+    }
+
+  }],
+  subAmount:{
+    type:Number,
+    // required:true
+  },
+  totalAmount:{
+    type:Number,
+    // required:true
+  },
+
+
+  
+})
+const cartModel =mongoose.model('cart',Carts);
 
 
 module.exports={

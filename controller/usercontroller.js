@@ -1,10 +1,9 @@
 const session = require("express-session");
 const { ObjectId } = require("mongodb"); //for deteting category //
 
-const {  ProductsModel } = require("../model/database");
-const { User } = require("../model/database");
-const {profilemodel} =require ('../model/database')
-const {wishlistmodel}=require('../model/database')
+const {wishlistmodel, User, ProductsModel,profilemodel, } = require("../model/database");
+const { Mongoose } = require("mongoose");
+const Lookups = require("twilio/lib/rest/Lookups");
 
 
 module.exports = {
@@ -25,20 +24,44 @@ module.exports = {
 
   },
 
-profile:async(req,res)=>{
-const userId=req.session._id
-console.log(userId);
+profileGet:async(req,res)=>{
 
-const user=await User.findById(userId) 
-console.log('user:',user);
-  res.render("user/profile",{user})
-},
-editprofileGet:async(req,res)=> {
-res.render("user/addProfile")
+res.status(200).render("user/profile");
+
 },
 
-editprofilePost:(req,res)=>{
-
+profilepost:async(req,res)=>{
+  try {
+    const accountId = req.session.userId;
+    let userProfile = await User.findOne({ _id: accountId });
+    if (!userProfile) {
+      return res.status(404).send("User not found");
+    }
+ 
+    console.log(err,'erroor in profile post ');
+    const { age, address } = req.body;
+    const { name, email, phone } = userProfile;
+    const userId = userProfile._id;
+    const profileUpdateResult = await Profile.findOneAndUpdate(
+      { userId: accountId },
+      {
+        $set: {
+          userId: accountId,
+          age: age,
+          address: address,
+          name: name,
+          email: email,
+          phone: phone,
+        },
+      },
+      { upsert: true}
+  )
+  res.send(
+    '<script>alert("Profile Updated"); window.location="/userhome";</script>'
+  )
+}catch(err){
+  console.error("Error updating profile:", err)
+  res.status(500).send("Internal Server Error")
 }
-  
+}
 }

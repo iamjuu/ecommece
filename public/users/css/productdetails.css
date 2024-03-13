@@ -366,7 +366,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
   width: 100%;
   background-color: var(--sea-green);
   color: var(--white);

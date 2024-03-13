@@ -1,44 +1,32 @@
 const { response } = require("express");
 
-async function togglewishlist(event){
-    event.preventDefault()
-    const heart=event.currentTarget.querySelector('.fa-heart')
-    console.log('heart:',heart);
-    console.log('curreeeent',event.currentTarget);
-    const productId = event.currentTarget.getAttribute('data-product-id')
-    console.log('productId:',productId);
-    const isredcolor=heart.classList.contains('redcolor')
-    
-    if(!isredcolor){
-        //add to wishlist
 
-    }
+async function togglewishlist(event) {
+    event.preventDefault();
+    const heart = event.currentTarget.querySelector('.fa-heart');
+    const productId = event.currentTarget.getAttribute('data-product-id');
+    const isredcolor = heart.classList.contains('redcolor');
 
-    console.log('isredcolor:',isredcolor);
+    if (productId) {
+        const response = await fetch("/addwishlisttogglePost/" + productId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ isredcolor: isredcolor.toString() })
+        });
 
-    if(productId){
-
-        const response=await fetch("/addwishlisttogglePost/" + productId ,{
-            method :'POST',
-             headers: { 
-                'Content-Type':'application/json'
-        },
-
-        body:JSON.stringify( {isredcolor:isredcolor.toString()})
-    })
-    console.log(response);
-
-        if(response.status===200){
-
-            isredcolor
-
-        }else{
+        if (response.status === 200) {
+            // Toggle the "redcolor" class based on the response
+            heart.classList.toggle("redcolor", !isredcolor);
+        } else {
             console.log('error in toggle');
         }
-
     }
- 
 }
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const wishlist = document.querySelectorAll('.wishlist-btn');

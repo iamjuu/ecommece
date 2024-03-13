@@ -103,7 +103,7 @@
                                         <td>
                                             <div class="img_product">
 
-                                                <img src="/productImages/<%=Product.Image%>" alt="" width="100px"
+                                                <img src="/productImages/<%=Product.Image[0]%>" alt="" width="100px"
                                                     srcset="" />
                                             </div>
                                         </td>
@@ -122,7 +122,7 @@
                                         <td>
 
                                             <button class="category_edit"> <a
-                                                    href="/admin/editproducts/<%= Product._id %>">
+                                                    href="/admin/editproduc/:id<%= Product._id %>">
                                                     <lord-icon src="https://cdn.lordicon.com/oqaajvyl.json"
                                                         trigger="hover" style="width:50px;height:50px">
                                                     </lord-icon> </a></button>
@@ -130,6 +130,7 @@
                                         <td>
                                             <button class="category_edit"
                                                 onclick="deleteProduct(event,'<%=Product._id%>')">
+
                                                 <lord-icon src="https://cdn.lordicon.com/vlnvqvew.json" trigger="hover"
                                                     style="width:50px;height:50px">
                                                 </lord-icon>
@@ -169,7 +170,7 @@
                 reverseButtons: true
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const response = await axios.delete('/admin/products/delete/' + productId)
+                    const response = await axios.delete('/productdelete/' + productId)
                     if (response.status == 200) {
                         document.querySelector(`.row_${productId}`).remove()
                     }
