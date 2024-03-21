@@ -63,30 +63,30 @@
             </div>
             <div class="content_part">
 
-                <form action="/admin/editproduc/" method="post" enctype="multipart/form-data">
+                <form action="/admin/editproduct/<%=product._id %>" method="post" enctype="multipart/form-data">
                     <div class="frame">
                         <div class="gap_div">
                             <div class="card_div">
                                 <div class="form-group">
                                     <label for="productName">Product Name</label>
-                                    <input type="text" id="productName" name="productName" placeholder="Enter product name">
+                                    <input type="text" id="productName" name="productName" value="<%= product.productName %>">
                                 </div>
                 
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <input type="text" id="price" name="price" placeholder="Enter price">
+                                    <input type="text" id="price" name="price"  value="<%= product.price%>"    >
                                 </div>
                 
                                 <div class="form-group">
                                     <label for="discount">Discount</label>
-                                    <input type="text" id="discount" name="discount" placeholder="Enter discount">
+                                    <input type="text" id="discount" name="discount" value="<%= product.discount%>">
                                 </div>
                 
                        
                                 <div class="form-group">
                                     <label for="category">Category</label>
                                     <select id="category" name="category">
-                                        <option value="" selected disabled>Select category</option>
+                                        <option value="<%= product.category%>" selected disabled>Select category</option>
                                         <option value="mens">Mens</option>
                                         <option value="womens">Womens</option>
                                     </select>
@@ -94,7 +94,7 @@
 
                                 <div class="form-group">
                                     <label for="subCategory">Sub Category</label>
-                                    <select name="subCategory" id="subCategory">
+                                    <select name="subCategory" id="subCategory"  >
                                         <option value="" selected disabled>Select sub category</option>
                                         <option value="">korean Shirts</option>
                                         <option value="">plane shirts</option>
@@ -136,18 +136,18 @@
                 
                                 <div class="form-group">
                                     <label for="quantity">Quantity</label>
-                                    <input type="number" id="quantity" name="quantity" placeholder="Enter quantity">
+                                    <input type="number" id="quantity" name="quantity"    value="<%= product.quantity%>">
                                 </div>
                 
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea id="description" name="description" placeholder="Enter description"></textarea>
+                                    <textarea id="description" name="description"  value=""><%= product.description%></textarea>
                                 </div>
 
                                  
                                 <div class="img_div">      
                                     <div class="form-group img_centr">
-                                        <div class="image_space">
+                                        <div   class="image_space">
                                             <img   id="show" src="" alt=" "  width="250px">
                                         </div>
                                         <div class="image_buttn">

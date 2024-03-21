@@ -6,7 +6,8 @@ async function togglewishlist(event) {
     const heart = event.currentTarget.querySelector('.fa-heart');
     const productId = event.currentTarget.getAttribute('data-product-id');
     const isredcolor = heart.classList.contains('redcolor');
-
+    console.log(isredcolor);
+   
     if (productId) {
         const response = await fetch("/addwishlisttogglePost/" + productId, {
             method: 'POST',
@@ -17,8 +18,16 @@ async function togglewishlist(event) {
         });
 
         if (response.status === 200) {
+           
             // Toggle the "redcolor" class based on the response
             heart.classList.toggle("redcolor", !isredcolor);
+            if(heart.classList.contains('redcolor')){
+                heart.classList.remove('fa-regular')
+                heart.classList.add('fa-solid')
+            } else {
+                heart.classList.remove('fa-solid')
+                heart.classList.add('fa-regular')
+            }
         } else {
             console.log('error in toggle');
         }
@@ -49,4 +58,5 @@ document.addEventListener('DOMContentLoaded', function () {
             button.closest('.product').remove();
         }
     }
+    
 });

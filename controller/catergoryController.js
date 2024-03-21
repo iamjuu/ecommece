@@ -1,4 +1,4 @@
-const{categoryModel}=require("../model/database")
+const{categoryModel,ProductsModel}=require("../model/database")
 
 
 module.exports={
@@ -28,4 +28,10 @@ module.exports={
     res.render("admin/category", { categories: categorydata });
   },
 
+  catagoryshowpage:async(req,res)=>{
+   const  id=req.query.category
+console.log(id);  
+  const check= await  ProductsModel.find({ category:id})
+  res.render("user/catagorypage",{check})
+}
 }

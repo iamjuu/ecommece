@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADD BANNER</title>
-<link rel="stylesheet" href="/admins/css/admin.css">
-<link rel="stylesheet" href="/admins/css/product.css">
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <link rel="stylesheet" href="/admins/css/admin.css">
+    <link rel="stylesheet" href="/admins/css/product.css">
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
+
 <body>
     <div class="continer">
         <div class="layer1">
@@ -24,73 +26,60 @@
         <div class="layer2">
             <div class="tabs">
                 <ul>
-                    <li onclick="window.location.href='/admin/dashboard'">
-<lord-icon
-    src="https://cdn.lordicon.com/dqrpfjei.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>DASHBOARD</li>
-                    <li onclick="window.location.href='/admin/users'"><lord-icon
-    src="https://cdn.lordicon.com/xfzuyvam.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>USERS</li>
-                    <li onclick="window.location.href='/admin/products'"><lord-icon
-    src="https://cdn.lordicon.com/amlwgnug.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>PRODUCTS</li>
-                    <li onclick="window.location.href='/admin/category'"><lord-icon
-    src="https://cdn.lordicon.com/kpvuihyi.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>CATEGORY</li>
-                    <li onclick="window.location.href='/admin/coupen'"><lord-icon
-    src="https://cdn.lordicon.com/nlmjynuq.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>COUPONS</li>
-                    <li onclick="window.location.href='/admin/orders'"><lord-icon
-    src="https://cdn.lordicon.com/guothkao.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>ORDERS</li>
-                    <li onclick="window.location.href='/admin/bannar'"><lord-icon
-    src="https://cdn.lordicon.com/fxtblcmc.json"
-    trigger="hover"
-    style="width:50px;height:50px">
-</lord-icon>BANNERS</li>
-<div class="logout">
-    <button class="btn1">LOGOUT</button>
-</div>
+                    <li onclick="window.location.href='/dashboard'">
+                        <lord-icon src="https://cdn.lordicon.com/dqrpfjei.json" trigger="hover"
+                            style="width:50px;height:50px">
+                        </lord-icon>DASHBOARD
+                    </li>
+                    <li onclick="window.location.href='/users'"><lord-icon src="https://cdn.lordicon.com/xfzuyvam.json"
+                            trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>USERS</li>
+                    <li onclick="window.location.href='/products'"><lord-icon
+                            src="https://cdn.lordicon.com/amlwgnug.json" trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>PRODUCTS</li>
+                    <li onclick="window.location.href='/category'"><lord-icon
+                            src="https://cdn.lordicon.com/kpvuihyi.json" trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>CATEGORY</li>
+                    <li onclick="window.location.href='/coupen'"><lord-icon src="https://cdn.lordicon.com/nlmjynuq.json"
+                            trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>COUPONS</li>
+                    <li onclick="window.location.href='/orders'"><lord-icon src="https://cdn.lordicon.com/guothkao.json"
+                            trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>ORDERS</li>
+                    <li onclick="window.location.href='/Bannar'"><lord-icon src="https://cdn.lordicon.com/fxtblcmc.json"
+                            trigger="hover" style="width:50px;height:50px">
+                        </lord-icon>BANNERS</li>
+                    <div class="logout">
+                        <button class="btn1">LOGOUT</button>
+                    </div>
 
 
-                    
+
                 </ul>
             </div>
             <div class="content_part">
-
-                <form action="" method="post">
+                <form action="/admin/addBannar" method="post" enctype="multipart/form-data">
                     <div class="frame">
                         <div class="banner_gap_div">
                             <div class="banner_div">
 
-                                <div class="banner_img_div">      
+                                <div class="banner_img_div">
                                     <div class="form-group img_centr">
                                         <div class="banner_image_space">
-                                            <img src="" alt="">
+                                            <img src=""  id="show" alt="" width="100px">
                                         </div>
-                                       <div class="banner_image_buttn">
-                                           Choose Image
-                                        <input type="file" id="productImage" name="productImage">
-                                       </div>
+                                        <div class="banner_image_buttn">
+                                            Choose Image
+                                            <input type="file" id="productImage"   multiple onchange="preview(this)"  name="productImage">
+                                        </div>
                                     </div>
-                                </div>  
+                                </div>
 
                                 <div style="width: 100%;">
                                     <div class="form-group">
                                         <label for="bannerDescription">Banner name</label>
-                                        <input type="text" id="bannerDescription" name="bannername" placeholder="Enter banner name">
+                                        <input type="text" id="bannerDescription" name="bannername"
+                                            placeholder="Enter banner name">
                                     </div>
                                     <div class="form-group">
                                         <label for="buttonLink">Amount</label>
@@ -108,16 +97,28 @@
                                         <button type="submit">Add Banner</button>
                                     </div>
                                 </div>
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
                 </form>
 
-                         
+
+
             </div>
         </div>
     </div>
 </body>
+<script>
+
+ function  preview(input){
+  const file=input.files[0];
+    const reader = new FileReader();
+if(file){
+    document.getElementById('show').src=URL.createObjectURL(file)
+}
+ }
+</script>
+
 </html>

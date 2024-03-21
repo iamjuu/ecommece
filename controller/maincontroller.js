@@ -4,7 +4,7 @@ const { text } = require("body-parser");
 const optsender = require("../utils/sendemails");
 const otpcode = Math.floor(Math.random() * 900000) + 100000;
 require("dotenv").config();
-
+console.log(otpcode);
 
 module.exports = {
   signupGet: (req, res) => {

@@ -2,17 +2,20 @@
 const express=require('express')
 const router=express.Router()
 const {productUpload}=require("../middleware/multer")
-const {addproductsGet,addproductsPost,products}=require("../controller/productcontroller")
-const {productdetailsGet,deleteproductsGet,editproductGet}=require("../controller/productcontroller")
+const product=require("../controller/productcontroller")
+const catagory=require("../Controller/catergoryController");
 
+  router.get('/admin/addproducts',product.addproductsGet )
+        .post("/admin/addproducts",productUpload.array('productImage',5),product.addproductsPost)
+        .get('/products',product.products)
 
+        .get("/productdetails/:id",product.productdetailsGet)
 
-  router.get('/admin/addproducts',addproductsGet )
-        .post("/admin/addproducts",productUpload.array('productImage',5),addproductsPost)
-        .get('/products',products)
-        .get("/productdetails/:id",productdetailsGet)
-        .delete('/productdelete/:id',deleteproductsGet)
-        .get("/admin/editproduc/:id",editproductGet)
+        .get("/admin/editproduct/:id",product.editproductGet)
+        .post("/admin/editproduct/:id",productUpload.array('productImage',5),product.editproductpost)
+        .delete('/productdelete/:id',product.deleteproductsGet)
        
-       
-        module.exports = router;
+        .get("/catagorypage",catagory.catagoryshowpage)
+
+
+          module.exports = router

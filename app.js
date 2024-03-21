@@ -26,14 +26,7 @@ app.set('views', path.join(__dirname,'views'));
 const mainrouter=require('./Routers/mainrouter')
 const adminrouter=require('./Routers/adminrouter')
 const userrouter=require('./Routers/userrouter')
-const productrouter=require('./Routers/productrouter')
-const catergoryrouter=require("./Routers/catergoryrouter")
-const couponrouter=require("./Routers/couponrouter")
-const orderruoter=require("./Routers/orderruoter")
-const bannarrouter=require("./Routers/bannarruoter")
-const wishlistrouter=require("./Routers/wishlistrouter")
-const cartrouter=require("./Routers/cartrouter")
-
+const productrouter=require("./Routers/productrouter")
 
 
 app.use(express.urlencoded({extended:true}))
@@ -54,14 +47,8 @@ app.use(bodyParser.json());
   app.use(express.json());
   
 app.use('/',adminrouter)
-app.use('/',mainrouter)
-app.use('/',userrouter)
-app.use('/',productrouter)
-app.use('/',catergoryrouter)
-app.use('/',couponrouter)
-app.use("/",orderruoter);
-app.use("/",bannarrouter)
-app.use("/",wishlistrouter)
-app.use("/",cartrouter)
+app.use("/",userrouter)
+app.use("/",mainrouter)
+app.use("/",productrouter)
 
 

@@ -50,7 +50,7 @@ wishlistdelete: async (req, res) => {
         try {
             const productid = req.params.id;
             const idofProduct =new mongoose.Types.ObjectId(productid);
-            console.log(idofProduct);
+            // console.log(idofProduct);
             const userEmail = req.session.email;
             const userDetails = await  User.findOne({ email: userEmail });
             const user  = userDetails._id
@@ -59,6 +59,7 @@ wishlistdelete: async (req, res) => {
                 { user: userId },
                 { $pull: { products: idofProduct } },
             );
+            console.log(result)
             res.status(200).json({ message: true });
         } catch (error) {
             console.log(error);

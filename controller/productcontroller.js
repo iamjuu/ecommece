@@ -5,8 +5,6 @@ const {  ProductsModel } = require("../model/database");
 module.exports={
   
 
-
-
       addproductsGet: (req, res) => {
         res.render("admin/addproducts");
       },
@@ -26,14 +24,13 @@ module.exports={
             discount,
           };
 
-          console.log(prodata);
           const allproductsdata = new ProductsModel(prodata);
           await allproductsdata.save();
     
     
           res.redirect("/products");
         } catch (err) {
-          console.log(err, `error in add product`);
+          console.log(err, `error in add product post`);
           res.status(500).send("Internal Server Error");
         }
       },
@@ -41,7 +38,7 @@ module.exports={
       products: async (req, res) => {
         const Productsdata = await ProductsModel.find({});
         res.render("admin/products", { allProducts: Productsdata });
-        console.log(Productsdata)
+        // console.log(Productsdata)
       },
 
 
@@ -56,14 +53,42 @@ module.exports={
       deleteproductsGet: async (req, res) => {
         try {
           const productId =req.params.id
-          console.log(productId);
+          // console.log(productId);
           res.status(200).json({message:true})
           await ProductsModel.findByIdAndDelete(productId); 
         } catch (err) {
           console.log(err, `product delete erorr`);
         }
 },
-editproductGet:(req,res)=>{
-  res.render("admin/editproduct")
-}
+editproductGet:async (req,res)=>{
+
+  const productid=req.params.id
+  console.log('product id',productid);
+
+  const product= await ProductsModel.findById(productid);
+  console.log('product details',product);
+  res.render("admin/editproducts",{product});
+
+
+},
+editproductpost:async(req,res)=>{
+
+  const productid=req.params.id
+  console.log(productid);
+
+  const oldImage=await ProductsModel.findOne({_id:productid})
+  const {productName,price,discount,category,quantity,description} = req.body;
+  await ProductsModel.findByIdAndUpdate(productid, {
+      $set: {
+          productName: productName,
+          price:price,
+          discount: discount,
+          category:category,
+          quantity:quantity,
+          description:description,
+      }
+    });      
+  res.redirect("/admin/addproducts") 
+},
+
 }

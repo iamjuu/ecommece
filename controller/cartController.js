@@ -2,6 +2,7 @@ const { Mongoose } = require("mongoose")
 const{cartModel,ProductsModel}=require("../model/database")
 const{ ObjectId}= require("mongodb"); 
 const mongoose = require('mongoose');
+const session = require("express-session");
 
 
 
@@ -11,8 +12,17 @@ module.exports={
     if(req.session.email){
         const userId= new ObjectId(req.session._id)
         const cart=await  cartModel.findOne({userId}).populate({path:'products.product',model:'Products'})
-        console.log(cart);
-        res.render("user/cartpage",{cart:cart || ''})
+        const subtotal=cart.products.reduce((acc,value)=>{
+            return  acc+=value.product.price*value.quantity               
+        },0)
+        console.log(subtotal);
+        const discount=cart.products.reduce((acc,value)=>{
+            return acc +=(value.product.price*value.product.discount)/100;               
+        },0)
+
+        const  total=(subtotal - discount)
+        // console.log('Cart Get : ',cart);
+        res.render("user/cartpage",{cart:cart || '',subTotal:subtotal, discount:discount,total:total});
     }else{
        res.redirect('/login');
     }
@@ -56,6 +66,9 @@ module.exports={
                     );
                     existproduct.price=product.price*existproduct.quantity;
                     console.log('existproduct.price:',existproduct.price);
+
+
+
                 }else{
                     console.log('product not find');
                     carts.products.push({product:productsId,
@@ -63,15 +76,12 @@ module.exports={
                         price:product.price
                     })
                 }
-                     carts.subAmount=carts.products.reduce((total,item)=>{
-                        return total+item.price
-                     },0)
+                    carts.subAmount = carts.products.reduce((total, product) => total + (product.price * product.quantity), 0)
 
-
-                     carts.totalAmount=carts.subAmount+20
+                    carts.totalAmount=carts.subAmount+20
 
                     await carts.save()
-                    console.log(carts);
+                    // console.log(carts);
        
                             
            
@@ -79,6 +89,45 @@ module.exports={
         }else{
             res.redirect("/login")
         }
+    },
+    productdelete:(req,res)=>{
+        const productId=req.params.id
+            console.log(productId);
+    },
+    cartupdate:async (req,res)=>{
+    const objId= req.query.id
+    console.log(objId);
+    const value = req.query.value
+    console.log(value);
+    const userId=req.session._id
+    // console.log('userID',userId);
+    //   console.log('objid',objId);
+
+      try {
+
+        const newdata = await cartModel.findOneAndUpdate(
+            {
+                'products._id': objId
+            },      
+            
+            {
+
+                'products.$.quantity': value,
+                                
+            },
+            {new: true}
+        );
+
+        
+        console.log('Updated document:', newdata);
+
+        res.status(200).json({success:true})
+    } catch (error) {
+        res.status(400).json({success:false})
+        console.error('Error:', error);
+
     }
-    
-}
+    },
+    }
+
+

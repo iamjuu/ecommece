@@ -22,23 +22,23 @@ const allproducts=multer.diskStorage({
     }
  })
 
- const allbannars=multer.diskStorage({
-    destination(req,file,cb)
+ const allbannar=multer.diskStorage({
+    destination:function(req,file,cb)
     {
-        cb(null,'public/bannarimage')
+        cb(null,'public/bannarImage')
     },
     filename:function(req,file,cb)
-{
-    cb(null,Date.now()+ '-'+file.originalname)
-}
-   
- })
+    {
+        cb(null,Date.now()+ '-'+ file.originalname)
+    }
+});
+
 
 const categoryUpload= multer({storage : category})
 const productUpload=multer({storage:allproducts})
-const bannarupload=multer({storage:allbannars})
+const bannarUpload=multer({storage:allbannar})
 module.exports={
     categoryUpload,
     productUpload,
-    bannarupload,
+    bannarUpload,
 }

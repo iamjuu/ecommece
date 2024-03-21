@@ -1,48 +1,38 @@
-const express=require('express')
-const router=express.Router()
-const {dashboard,}=require("../controller/admincontroller")
+const express = require("express");
+const router = express.Router();
+const admin = require("../controller/admincontroller");
+const banner = require("../controller/bannarcontroller");
+const coupon = require("../controller/couponController");
+const category = require("../controller/catergoryController");
+const orders=require("../controller/ordercontroller")
+
+const {bannarUpload}=require('../middleware/multer')
+
+router
+  .get("/dashboard", admin.dashboard)
+
+  .get("/admin/addBannar", banner.addBannarGet)
+  .post("/admin/addBannar",bannarUpload.array('bannarimage',5),banner.addBannarPost)
+
+
+  .get("/bannar", banner.bannar)
+
+
+  .delete("/bannar/delete/delete:id",banner.deleteBannar)
 
 
 
-const { categoryUpload, productUpload,bannarupload} =  require('../middleware/multer')
+
+  .get("/coupon", coupon.coupon)
+  .get("/addcoupenGet", coupon.addcoupenGet)
+  .post("/addcouponPost", coupon.addcouponPost)
+
+  .get("/admin/addcatergory", category.addCategoryGet)
+  .post("/admin/addCategoryPost", category.addCategoryPost)
+  .get("/catergory", category.category);
+
+  router.get("/orders",orders.orders)
 
 
-router.get( "/dashboard", dashboard)
 
-
-
-      // .get( "/users",admin.user)
-
-
-     
-
-
-      // .get("/category",admin.category)
-      // .get("/addcategory",admin.addCategoryGet)
-      // .post("/addcategory",categoryUpload.single('Image'), admin.addCategoryPost)
-
-
-      // .get("/coupon",admin.coupon)
-      // .get("/addCoupon",admin.addcoupenGet)
-      // .post("/addCoupon",admin.addcouponPost)
-
-
-      // .get("/orders",admin.orders)
-
-      // .get("/bannar",admin.bannar)
-      // .get("/addbannar",admin.addBannarGet)
-      // .post("/addbannar" ,bannarupload.single('Image'),admin.addBannarPost)
-
-
-      // .get('/category/delete/:categoryId',admin.deleteCategoryGet)
-      // .delete("/products/delete/:_id",admin.deleteproductsGet)
-      // .get("/bannar/delete/:bannarId",admin.deletebannarGet)
-      // .get("/coupon/delete/:couponId",admin.deleteCouponGet)
-
-
-      // .get("/editproducts/:_id",admin.editProductGet)
-
-
-module.exports=router
-
-
+module.exports = router;

@@ -1,37 +1,50 @@
 
+// const {BannarModel}=require("../model/database")
 const {BannarModel}=require("../model/database")
 
 module.exports={
  
     
   addBannarGet: (req, res) => {
+
     res.render("admin/addBannar");
   },
-  addBannarPost: async (req, res) => {
-    try {
-      const bannername = req.body.bannername;
-      const Amount = req.body.Amount;
-      const startingDate = req.body.startingDate;
-      const endingDate = req.body.endingDate;
-      const bannardata = {
-        bannername,
-        Amount,
-        startingDate,
-        endingDate,
-      };
-      const allbannardata = new BannarModel(bannardata);
-      await allbannardata.save();
-      console.log(allbannardata);
 
-      res.redirect("/admin/bannar");
-    } catch (err) {
-      console.log(err, `error in bannar data saving`);
-    }
+  addBannarPost: async (req, res) => {
+try {
+const {bannername,Amount,startingDate,endingDate}=req.body  
+console.log(bannername,Amount,startingDate,endingDate);
+
+
+
+const image=req.files.map(file => file.filename)
+
+const data = {
+  bannername,Amount,startingDate,endingDate
+};
+
+const allBannardata = new BannarModel(data);
+await allBannardata.save();
+console.log(allBannardata);
+
+} catch (error) {
+  console.log(error,'error in bannar post');
+  
+}  
+res.redirect("/bannar");
+
   },
+  
+
   bannar: async (req, res) => {
-    const bannardata = await BannarModel.find({});
-    res.render("admin/bannar", { allbannars: bannardata });
+   
+    res.render("admin/bannar");
   },
+  deleteBannar:(req,res)=>{
+    
+    const bannarId =req.params.id
+    console.log(bannarId);
+  }
 
 
 }

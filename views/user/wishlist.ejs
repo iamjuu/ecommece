@@ -15,10 +15,11 @@
     <div class="main">
     <div class="content">
     <% data.forEach((wishlist)=> { %>
+      <%console.log(wishlist); %>
       <div class="box remove<%=wishlist._id%>">
         <div class="imageArea">
-          <img src="/productImages/<%= wishlist.Image[0] %>" alt="" width="90%" height="90%">
-        </div>
+        <a href="/productdetails/<%=wishlist._id %>"  >  <img src="/productImages/<%= wishlist.Image[0] %>" alt="" width="90%" height="90%">
+        </a> </div>
         <div class="textarea">
           <div class="heading">
             <h1><%= wishlist.productName %></h1>

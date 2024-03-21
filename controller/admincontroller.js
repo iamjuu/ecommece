@@ -2,7 +2,6 @@ const { render } = require("ejs");
 const { categoryModel } = require("../model/database");
 const { ProductsModel } = require("../model/database");
 const { CouponModel } = require("../model/database");
-const { BannarModel } = require("../model/database");
 const { ObjectId } = require("mongodb"); //for deteting category //
 
 module.exports = {

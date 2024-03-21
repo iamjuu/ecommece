@@ -16,8 +16,8 @@ const {
 
   router.get('/signup',signupGet)
   .post('/signup',signupPost)
-  .get('otp',otpGet)
-  .post('otp',otppost) 
+  .get('/otp',otpGet)
+  .post('/otp',otppost) 
   .get("/login",loginGet)
   .post("/login",loginPost)
   .get('forgot',forgotGet)
