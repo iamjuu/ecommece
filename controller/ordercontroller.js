@@ -1,10 +1,16 @@
 module.exports={
-   orders: (req, res) => {
-    res.render("admin/orders");
-  },   
 
-  orderGet:(req,res)=>{
-    res.render('user/order')
+  orderadmin:(req,res)=>{
+    res.render("admin/orders")
+  },
 
+  orderuser:(req,res)=>{
+    res.render("user")
+  },
+  orderplaced:(req,res)=>{
+    if (req.session.email) {
+      res.render("user/orderplaced")
+      
+    }
   }
 }

@@ -49,11 +49,13 @@
                 <% if (cart && cart.products) { %>
                 <% cart.products.forEach((item) => { %>
                   <div class="items position-relative">
-                      <a class="position-absolute deleteBtn" href="/userCartDelete/<%= item._id %>">
+                    <form action="/productdelete/:id" method="post">
+                      <a class="position-absolute deleteBtn" href="#">
                           <svg viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M1.07143 16.8889C1.07143 18.05 2.03571 19 3.21429 19H11.7857C12.9643 19 13.9286 18.05 13.9286 16.8889V4.22222H1.07143V16.8889ZM15 1.05556H11.25L10.1786 0H4.82143L3.75 1.05556H0V3.16667H15V1.05556Z" fill="black" />
                           </svg>
                       </a>
+                    </form>
                       <div class="contentDiv d-flex gap-4">
                           <div class="itemImg">
                               <% if (item.product && item.product.Image && item.product.Image.length > 0) { %>
@@ -92,18 +94,15 @@
             <% } %>
                 <div class="items position-relative">
                 <div class="coupons">
-                  <form
-                    action="/userApplyCoupon"
-                    class="d-flex align-items-center"
-                    method="post"
-                  >
+                  
+                
                     <div class="input">
-                      <input type="text" placeholder="Enter Coupon Code" />
+                      <input id="couponcode" type="text"  name="couponcode" placeholder="Enter Coupon Code" />
                     </div>
                     <div>
-                      <button type="submit">APPLY</button>
+                        <button class="couponbtn">APPLY</button>
                     </div>
-                  </form>
+            
                 </div>
               </div>
             </div>
@@ -173,7 +172,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- custom js -->
-  <script src="/users/js/cart.js"></script>
+    <script src="/users/js/cart.js"></script>
 
   <script>
     

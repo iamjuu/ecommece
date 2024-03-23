@@ -56,7 +56,7 @@ const categoryModel = mongoose.model("category", categorySchema1); ;
 
 const allproducts=new mongoose.Schema({
   Image: [{
-    type: String,
+    type: Array,
     // required: true,
 }],
   productName: {
@@ -237,6 +237,106 @@ const Carts=new mongoose.Schema({
 const cartModel =mongoose.model('cart',Carts);
 
 
+const address = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "signupDatas",
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  addresses: [
+    {
+      houseNumber: {
+        type: String,
+        required: true,
+      },
+      locality: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      state: {
+        type: String,
+        required: true,
+      },
+      pinCode: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
+});
+const addressmodel=mongoose.model('address',address)
+
+
+
+const order = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "signupDatas",
+    required: true,
+  },
+  products: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
+  totalOrderAmount: {
+    type: Number,
+    default: true,
+  },
+  deliveryAddress: {
+    houseNumber: {
+      type: String,
+    },
+    locality: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    pinCode: {
+      type: Number,
+    },
+  },
+  orderedDate: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  deliveryDate: {
+    type: Date,
+  },
+  orderStatus: {
+    type: String,
+    default: "Pending",
+  },
+  cancelReason: {
+    type: String,
+  },
+  paymentMethod: {
+    type: String,
+  },
+})
+
+const ordermodel=mongoose.model('orders',order)
 module.exports={
   User,
   categoryModel,
@@ -245,6 +345,7 @@ module.exports={
   cartModel,
   BannarModel,
   profilemodel,
-  wishlistmodel
-
+  wishlistmodel,
+  addressmodel,
+  ordermodel
 }

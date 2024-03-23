@@ -31,7 +31,9 @@ router
   .post("/admin/addCategoryPost", category.addCategoryPost)
   .get("/catergory", category.category);
 
-  router.get("/orders",orders.orders)
+
+
+  router.get("/orders",orders.orderadmin)
 
 
 

@@ -1,5 +1,3 @@
-
-
 const increaseBtn = document.querySelectorAll('.increase-btn')
 console.log(increaseBtn)
 
@@ -45,3 +43,53 @@ decreasebtn.forEach((btn)=>{
 }})
     })
 
+
+// coupon 
+
+document.addEventListener("DOMContentLoaded",()=>{
+const applybtn = document.querySelector('.couponbtn')
+console.log(applybtn);
+if(applybtn){
+applybtn.addEventListener("click",async()=>{
+
+  const cDPrice=document.getElementById('cDPrice')
+  const couponcode=document.getElementById('couponcode').value
+  try {
+    const response=await fetch('/applycoupon',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({couponcode})
+
+
+    })
+    if(response.ok){
+      const result=await response.json()
+      cDPrice.textContent=''
+      if(result.success){
+        const couponDiscount= parseFloat(result.discount)
+        const totalamount =  document.getElementById('tPrice')
+        if(totalamount){
+          const totalamountprice = parseFloat(totalamount.innerText.replace('₹',''))
+
+          const discountedamount = totalamountprice-totalamountprice*(couponDiscount/100)
+          totalamount.textContent=`₹ ${discountedamount.toFixed()}`
+          cDPrice.textContent=`${couponDiscount}%`
+
+
+        }
+        
+      }
+      else{
+        cDPrice.textContent=`coupon condition wrong `
+      }
+    }else{
+      cDPrice.textContent = `invalid coupon code`
+    }
+  } catch (error) {
+    
+  }
+})  
+}
+
+
+})

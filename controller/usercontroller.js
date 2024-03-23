@@ -22,7 +22,8 @@ module.exports = {
       const userId= req.session._id
       userwishlist= await  wishlistmodel.findOne( {user: userId})
     }
-    res.render("user/userHome", { allProducts: productshow,bannarshow,userwishlist,bannarshow });
+    let discountrate=10
+    res.render("user/userHome", { allProducts: productshow,bannarshow,userwishlist,bannarshow, discountrate });
 
   },
 

@@ -94,7 +94,9 @@ cartBtn.addEventListener('click' , async(event)=> {
   event.preventDefault()
   try{
   const id = event.target.getAttribute('data-product-id') 
+  console.log('id',id);
     const response =await axios.get(`/addtocart/${id}`)
+    console.log(response);
     if(response.success){
     alert('product add to cart')
   }

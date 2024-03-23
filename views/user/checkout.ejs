@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/users/css/checkout.css" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+  <body>
+    <div class="fullContent">
+      <div class="checkoutContent">
+        <h1>Choose A Payment Method</h1>
+        <div class="checkoutCards">
+          <div class="card" onclick="showCashOnDeliveryForm()">
+            <img
+              src="/paymentImg/cash-on-delivery.png"
+              alt="Cash On Delivery"
+            />
+            <h4>Cash On Delivery</h4>
+          </div>
+          <div class="modal-overlay" id="modalOverlay"></div>
+          <div class="modal" id="cashOnDeliveryModal">
+            <div class="modal-content">
+              <form id="cashOnDeliveryForm" method="POST" action="/checkout">
+                <input
+                  type="hidden"
+                  name="paymentMethod"
+                  value="Cash On Delivery"
+                />
+                <label for="email" class="cashDeliveryLabel"
+                  >Please Verify Your Email</label
+                >
+                <input
+                  type="text"
+                  class="cashDeliveryInp"
+                  id="email"
+                  name="email"
+                  placeholder="xyz@gmail.com"
+                  required
+                />
+                <div class="address-section">
+                  <div class="address-sectionup">
+                    <label for="address">Choose Delivery Address :</label>
+                    <select id="addressDropdown" name="selectedAddress">
+                      <% userAddresses.forEach(userAddress => { %> <%
+                      userAddress.addresses.forEach(address => { %>
+                      <option value="<%= address._id %>">
+                        <%= address.houseNumber %>, <%= address.locality %>, <%=
+                        address.city %>, <%= address.state %> - <%=
+                        address.pinCode %>
+                      </option>
+                      <% }); %> <% }); %>
+                    </select>
+                  </div>
+                </div>
+                <p class="extra">
+                  ₹30 will be charged extra for Cash on Delivery option.
+                </p>
+                <div class="checkoutBtns">
+                  <button type="submit" class="placeOrder">Place Order</button>
+                  <button
+                    type="button"
+                    onclick="hideCashOnDeliveryForm()"
+                    class="close">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card" onclick="showUpiForm()">
+            <img src="/paymentImg/atm-card.png" alt="UPI Payment" />
+            <h4>Online Payment</h4>
+          </div>
+          <div class="modal-overlay" id="upiModalOverlay"></div>
+          <div class="modal" id="upiPaymentModal">
+            <div class="modal-content">
+              <form
+                id="upiPaymentForm"
+                action="/createRazorpayOrder"
+                method="POST">
+                <input type="hidden" name="paymentMethod" value="UPI Payment" />
+                <h3>Pay Using Razorpay :</h3>
+                <div class="address-section">
+                  <div class="address-sectionup">
+                    <label for="address">Choose Delivery Address</label>
+                    <select id="addressDropdown" name="selectedAddress">
+                      <% userAddresses.forEach(userAddress => { %> <%
+                      userAddress.addresses.forEach(address => { %>
+                      <option value="<%= address._id %>">
+                        <%= address.houseNumber %>, <%= address.locality %>, <%=
+                        address.city %>, <%= address.state %> - <%=
+                        address.pinCode %>
+                      </option>
+                      <% }); %> <% }); %>
+                    </select>
+                  </div>
+                </div>
+                <div class="checkoutBtns">
+                  <button class="placeOrder" type="submit" id="payButton">
+                    Place Order
+                  </button>
+                  <button onclick="hideUpiForm()" type="button" class="close">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="priceDetails">
+        <h1>Price Details</h1>
+        <div class="pricetext">
+          <div class="pt1">
+            <p>Total MRP :</p>
+            <% if (cart && cart.totalOgPrice !== undefined) { %>
+            <p class="mrp">₹ <%= cart.totalOgPrice %></p>
+            <% } %>
+          </div>
+          <div class="pt1">
+            <p>Discount :</p>
+            <% if (cart && cart.discount !== undefined) { %>
+            <p class="discount">₹ <%= cart.discount %></p>
+            <% } %>
+          </div>
+          <div class="pt1">
+            <p>Our Price :</p>
+            <% if (cart && cart.totalPrice !== undefined) { %>
+            <p class="price">₹ <%= cart.totalPrice %></p>
+            <% } %>
+          </div>
+          <div class="pt1">
+            <p class="shipping">Shipping Fee :</p>
+            <p class="free">FREE</p>
+          </div>
+          <div class="pt1">
+            <p class="totalamount">Total Amount :</p>
+            <% if (cart && cart.totalOrderAmount !== undefined) { %>
+            <p class="amount totalamount" id="totalAmountValue">
+              ₹ <%= cart.totalOrderAmount %>
+            </p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/users/js/checkout.js"></script>
+    <script>
+      const  payButton = document.getElementById('payButton');
+
+      event.preventDefault();
+
+
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to place the order?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, place order!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If the user confirms, call the placeOrder function
+            placeOrder();
+        }
+    });
+
+    function placeOrder() {
+    // Here you can write the code to handle the order placement
+    // For example, you can make an AJAX request to the server to process the order
+    // Or you can perform any other action you need to do when the order is placed
+    // Once the order is successfully placed, you can show another SweetAlert notification
+    Swal.fire({
+        title: 'Order Placed!',
+        text: 'Your order has been successfully placed.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+}
+      </script>
+  </body>
+</html>
